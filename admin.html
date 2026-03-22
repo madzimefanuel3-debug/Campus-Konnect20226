@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ══ Primary SEO (Private admin area – excluded from indexing) ══ -->
+    <title>Admin Dashboard | Campus Konnect</title>
+    <meta name="description" content="Secure administrative dashboard for Campus Konnect platform management.">
+    <meta name="author" content="Campus Konnect">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://campus-konnect-pwa.vercel.app/admin.html">
+
+    <!-- ══ Fonts ═════════════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- ══ Styles ═══════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- ══ PWA ════════════════════════════════════════════════ -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#9333ea">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon-72.png">
+</head>
+<body class="admin-layout">
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html"><span class="purple-text" style="font-size: 1.5rem;">Campus</span><span class="orange-text" style="font-size: 1.5rem;">Konnect</span></a>
+            </div>
+            <button class="close-sidebar-btn" id="close-sidebar">✕</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#" class="nav-item active"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Overview</a></li>
+                <li><a href="#" class="nav-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Businesses</a></li>
+                <li><a href="#" class="nav-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> Adverts <span class="badge warning">12 Pending</span></a></li>
+                <li><a href="#" class="nav-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Users</a></li>
+                <li><a href="#" class="nav-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Analytics</a></li>
+            </ul>
+            
+            <div class="sidebar-bottom">
+                <ul>
+                    <li><a href="#" class="nav-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</a></li>
+                    <li><a href="index.html" class="nav-item text-danger"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Return to Site</a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="admin-main">
+        <!-- Top Navigation -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="mobile-toggle" id="mobile-sidebar-toggle">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div class="search-wrap">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" placeholder="Search businesses, adverts, users..." class="admin-search">
+                </div>
+            </div>
+            <div class="topbar-right">
+                <button class="icon-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span class="notification-dot"></span>
+                </button>
+                <div class="admin-profile">
+                    <div class="profile-avatar bg-gradient-purple">A</div>
+                    <div class="profile-info">
+                        <span class="name">Super Admin</span>
+                        <span class="role">Platform Operations</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                    <h1 class="page-title" style="margin-bottom: 0.25rem;">Platform Overview</h1>
+                    <p class="page-subtitle" style="margin-bottom: 0;">Welcome back. Here is your operational summary for Campus Konnect.</p>
+                </div>
+                <button class="btn btn-primary" onclick="document.getElementById('addPostModal').classList.add('active')">
+                    + Add Post
+                </button>
+            </div>
+
+            <!-- Metrics Highlight Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Total Revenue</span>
+                        <div class="metric-icon purple-bg-light"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-primary)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+                    </div>
+                    <div class="metric-val">K4,285</div>
+                    <div class="metric-trend positive"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> +12.5% from last month</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Active Businesses</span>
+                        <div class="metric-icon orange-bg-light"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--orange-primary)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
+                    </div>
+                    <div class="metric-val">142</div>
+                    <div class="metric-trend positive"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> +5 new this week</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Total Users</span>
+                        <div class="metric-icon purple-bg-light"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-primary)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                    </div>
+                    <div class="metric-val">3,492</div>
+                    <div class="metric-trend positive"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> +242 this month</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Pending Adverts</span>
+                        <div class="metric-icon alert-bg-light"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+                    </div>
+                    <div class="metric-val">12</div>
+                    <div class="metric-trend warning">Requires review</div>
+                </div>
+            </div>
+
+            <!-- Two Column Section -->
+            <div class="dashboard-columns">
+                <!-- Data Table 1 -->
+                <div class="data-panel">
+                    <div class="panel-header">
+                        <h2>Pending Adverts Approval</h2>
+                        <button class="btn btn-secondary btn-sm">View All</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Business</th>
+                                    <th>Advert Title</th>
+                                    <th>Format</th>
+                                    <th>Submitted</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="table-item-info">
+                                            <div class="avatar bg-gradient-purple" style="width: 32px; height: 32px; font-size: 0.8rem;">NT</div>
+                                            <span>Nano Tech Repairs</span>
+                                        </div>
+                                    </td>
+                                    <td>Broken laptop screen? Battery dying...</td>
+                                    <td><span class="badge tag-img">Image</span></td>
+                                    <td>2 hrs ago</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-action check" title="Approve"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                                            <button class="btn-action cross" title="Reject"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-item-info">
+                                            <div class="avatar bg-gradient-orange" style="width: 32px; height: 32px; font-size: 0.8rem;">SP</div>
+                                            <span>Midnight Shawarma</span>
+                                        </div>
+                                    </td>
+                                    <td>Craving late-night flavors? 🌯🔥</td>
+                                    <td><span class="badge tag-vid">Video</span></td>
+                                    <td>5 hrs ago</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-action check" title="Approve"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                                            <button class="btn-action cross" title="Reject"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-item-info">
+                                            <div class="avatar bg-gradient-purple" style="width: 32px; height: 32px; font-size: 0.8rem;">FC</div>
+                                            <span>Frosty Cones</span>
+                                        </div>
+                                    </td>
+                                    <td>Cool down after a heavy study...</td>
+                                    <td><span class="badge tag-img">Image</span></td>
+                                    <td>1 day ago</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-action check" title="Approve"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                                            <button class="btn-action cross" title="Reject"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Data Table 2 -->
+                <div class="data-panel">
+                    <div class="panel-header">
+                        <h2>Recent Subscriptions</h2>
+                    </div>
+                    <div class="list-feed">
+                        <div class="feed-item">
+                            <div class="avatar bg-gradient-orange" style="width: 40px; height: 40px; font-size: 0.9rem;">AS</div>
+                            <div class="feed-info">
+                                <h4>Aura Studios</h4>
+                                <p>Subscribed to <span class="purple-text">Early Adopter (3 Months Free)</span></p>
+                            </div>
+                            <span class="feed-time">10 min ago</span>
+                        </div>
+                        <div class="feed-item">
+                            <div class="avatar bg-gradient-purple" style="width: 40px; height: 40px; font-size: 0.9rem;">BH</div>
+                            <div class="feed-info">
+                                <h4>Elite Boarding Agents</h4>
+                                <p>Purchased <span class="orange-text fw-bold">Lifetime Sponsorship</span></p>
+                            </div>
+                            <span class="feed-time">2 hrs ago</span>
+                        </div>
+                        <div class="feed-item">
+                            <div class="avatar" style="width: 40px; height: 40px; background: #333; font-size: 0.9rem;">MB</div>
+                            <div class="feed-info">
+                                <h4>Campus Book Hub</h4>
+                                <p>Registered pending profile review</p>
+                            </div>
+                            <span class="feed-time">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User & Business Management Section -->
+            <div class="dashboard-columns" style="margin-top: 1.5rem; grid-template-columns: 1fr;">
+                <div class="data-panel">
+                    <div class="panel-header">
+                        <h2>Business & Customer Management</h2>
+                        <button class="btn btn-primary btn-sm" onclick="alert('Add Customer Modal to open')">+ Add Customer / Business</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Business / Customer Info</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Joined</th>
+                                    <th>Actions (Future Backend Hook)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mock-business-list">
+                                <!-- Mock Data -->
+                                <tr>
+                                    <td>
+                                        <div class="table-item-info">
+                                            <div class="avatar bg-gradient-purple" style="width: 32px; height: 32px; font-size: 0.8rem;">NT</div>
+                                            <div>
+                                                <span>Nano Tech Repairs</span>
+                                                <br><small style="color: var(--text-secondary);">ceo@nanotech.com</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge text-purple bg-purple-light" style="color:var(--purple-light); background: rgba(147, 51, 234, 0.2);">Business</span></td>
+                                    <td><span class="badge" style="color:#22c55e; background: rgba(34, 197, 94, 0.2);">Active</span></td>
+                                    <td>Mar 15, 2026</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-action " title="Block" onclick="blockUser(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg></button>
+                                            <button class="btn-action cross" title="Remove" onclick="removeUser(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-item-info">
+                                            <div class="avatar bg-gradient-orange" style="width: 32px; height: 32px; font-size: 0.8rem;">SP</div>
+                                            <div>
+                                                <span>Midnight Shawarma</span>
+                                                <br><small style="color: var(--text-secondary);">contact@midshawarma.com</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge text-purple bg-purple-light" style="color:var(--purple-light); background: rgba(147, 51, 234, 0.2);">Business</span></td>
+                                    <td><span class="badge" style="color:#22c55e; background: rgba(34, 197, 94, 0.2);">Active</span></td>
+                                    <td>Mar 10, 2026</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-action " title="Block" onclick="blockUser(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg></button>
+                                            <button class="btn-action cross" title="Remove" onclick="removeUser(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="table-item-info">
+                                            <div class="avatar" style="background: #333; width: 32px; height: 32px; font-size: 0.8rem;">JS</div>
+                                            <div>
+                                                <span>John Smith</span>
+                                                <br><small style="color: var(--text-secondary);">john@university.edu</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge" style="color:var(--text-secondary); background: rgba(255, 255, 255, 0.1);">Customer</span></td>
+                                    <td><span class="badge" style="color:#f59e0b; background: rgba(245, 158, 11, 0.2);">Blocked</span></td>
+                                    <td>Jan 20, 2026</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn-action check" title="Unblock" onclick="alert('Unblocked')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                                            <button class="btn-action cross" title="Remove" onclick="removeUser(this)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Add Post Modal -->
+    <div class="profile-modal" id="addPostModal">
+        <div class="modal-overlay" onclick="document.getElementById('addPostModal').classList.remove('active')"></div>
+        <div class="modal-content" style="max-width: 500px; background: var(--bg-card); padding: 2rem; border-radius: 16px; position: relative; z-index: 1001; margin: 10vh auto; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem;">
+                <h2>Create Advert</h2>
+                <button style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;" onclick="document.getElementById('addPostModal').classList.remove('active')">&times;</button>
+            </div>
+            <form id="admin-post-form">
+                <div class="form-group">
+                    <label>Select Business</label>
+                    <select class="search-input w-100" id="post-business" required style="max-width:100%;">
+                        <option value="" disabled selected>Choose a business...</option>
+                        <option value="Nano Tech Repairs">Nano Tech Repairs</option>
+                        <option value="Midnight Shawarma">Midnight Shawarma</option>
+                        <option value="Frosty Cones">Frosty Cones</option>
+                        <option value="Glamour Cosmetics">Glamour Cosmetics</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Advert Copy (Caption)</label>
+                    <textarea class="search-input w-100" id="post-caption" rows="4" placeholder="Write something engaging..." required style="max-width:100%; border-radius:12px; padding-top:15px;"></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <div id="post-media-preview" style="width: 100%; height: 200px; border: 2px dashed rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 1rem; position: relative;">
+                        <span style="color:var(--text-secondary);">Media Preview</span>
+                    </div>
+                    <input type="file" id="post-media" accept="image/*,video/*" hidden>
+                    <label for="post-media" class="btn btn-secondary upload-btn w-100" style="cursor: pointer;">
+                        Upload Image or Video
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Publish Advert</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simple Sidebar Toggle for Admin UI
+        document.getElementById('mobile-sidebar-toggle').addEventListener('click', () => {
+            document.getElementById('admin-sidebar').classList.add('open');
+        });
+        document.getElementById('close-sidebar').addEventListener('click', () => {
+            document.getElementById('admin-sidebar').classList.remove('open');
+        });
+
+        // Mock Functions for Testing UI action mapping to backend
+        // TODO: In the future, hook these up to fetch('/api/businesses/xx', { method: 'DELETE' })
+        function removeUser(btn) {
+            if (confirm("Are you sure you want to completely remove this account?")) {
+                const tr = btn.closest('tr');
+                tr.style.opacity = '0.5';
+                setTimeout(() => {
+                    tr.remove();
+                    // Provision for API delete: 
+                    // fetch('/api/admin/users/1', {method: 'DELETE'}).then(...)
+                }, 300);
+            }
+        }
+
+        function blockUser(btn) {
+            if (confirm("Are you sure you want to block this account?")) {
+                const tr = btn.closest('tr');
+                const statusBadge = tr.querySelectorAll('td')[2].querySelector('.badge');
+                statusBadge.style.color = '#f59e0b';
+                statusBadge.style.background = 'rgba(245, 158, 11, 0.2)';
+                statusBadge.textContent = 'Blocked';
+            }
+        }
+
+        // Admin Video/Image Preview Logic
+        const postMediaInput = document.getElementById('post-media');
+        const mediaPreview = document.getElementById('post-media-preview');
+        
+        if (postMediaInput && mediaPreview) {
+            postMediaInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        if (file.type.startsWith('video/')) {
+                            mediaPreview.innerHTML = `<video src="${event.target.result}" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;"></video>`;
+                        } else if (file.type.startsWith('image/')) {
+                            mediaPreview.innerHTML = `<img src="${event.target.result}" alt="Preview" style="width:100%; height:100%; object-fit:cover;">`;
+                        } else {
+                            alert('Unsupported file type');
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            document.getElementById('admin-post-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Advert successfully published to the Campus Konnect feed!');
+                document.getElementById('addPostModal').classList.remove('active');
+                e.target.reset();
+                mediaPreview.innerHTML = `<span style="color:var(--text-secondary);">Media Preview</span>`;
+            });
+        }
+    </script>
+</body>
+</html>

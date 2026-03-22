@@ -1,0 +1,89 @@
+{
+  "name": "Campus Konnect",
+  "short_name": "Konnect",
+  "description": "Discover campus businesses, adverts, and services in real-time.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f111a",
+  "theme_color": "#9333ea",
+  "lang": "en",
+  "categories": ["social", "business", "education"],
+  "icons": [
+    {
+      "src": "./icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "The Feed",
+      "short_name": "Feed",
+      "description": "Browse all campus adverts",
+      "url": "/index.html",
+      "icons": [{ "src": "./icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Business Zone",
+      "short_name": "Businesses",
+      "description": "Explore campus businesses",
+      "url": "/businesses.html",
+      "icons": [{ "src": "./icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Campus Konnect Feed"
+    }
+  ],
+  "prefer_related_applications": false
+}

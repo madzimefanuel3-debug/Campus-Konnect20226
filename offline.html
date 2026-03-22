@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Konnect | Offline</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#9333ea">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0f111a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+        .orb-1 { width: 500px; height: 500px; background: rgba(147, 51, 234, 0.15); top: -10%; left: -10%; }
+        .orb-2 { width: 400px; height: 400px; background: rgba(249, 115, 22, 0.1); bottom: -10%; right: -5%; }
+
+        .offline-card {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 3rem 2.5rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        .icon-wrap {
+            width: 80px; height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(147,51,234,0.3), rgba(249,115,22,0.3));
+            border: 1px solid rgba(147,51,234,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .icon-wrap svg { width: 40px; height: 40px; stroke: #a855f7; fill: none; stroke-width: 2; }
+
+        .pulse-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 28px;
+            border: 1px solid rgba(147,51,234,0.3);
+            animation: pulse-ring 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0; transform: scale(1.1); }
+        }
+
+        .logo { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+        .logo .purple { color: #a855f7; }
+        .logo .orange { color: #f97316; }
+
+        h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #a855f7, #f97316);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p { color: #94a3b8; line-height: 1.7; margin-bottom: 2rem; font-size: 0.95rem; }
+
+        .btn-retry {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: linear-gradient(135deg, #9333ea, #f97316);
+            color: white; border: none; border-radius: 12px;
+            padding: 0.875rem 2rem; font-size: 1rem; font-weight: 600;
+            cursor: pointer; font-family: 'Outfit', sans-serif;
+            transition: opacity 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+        .btn-retry:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-retry svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; }
+
+        .status-tag {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3);
+            color: #f87171; border-radius: 50px; padding: 0.3rem 0.9rem;
+            font-size: 0.8rem; font-weight: 500; margin-bottom: 1.25rem;
+        }
+
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: #f87171;
+            animation: blink 1.5s ease-in-out infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .cached-note {
+            margin-top: 1.5rem;
+            padding: 0.875rem 1rem;
+            background: rgba(147,51,234,0.08);
+            border: 1px solid rgba(147,51,234,0.2);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #7c3aed;
+        }
+        .cached-note a { color: #a855f7; text-decoration: none; }
+        .cached-note a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <div class="offline-card">
+        <div class="icon-wrap">
+            <div class="pulse-ring"></div>
+            <svg viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path><path d="M10.71 5.05A16 16 0 0 1 22.56 9"></path><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+        </div>
+
+        <div class="logo"><span class="purple">Campus</span><span class="orange">Konnect</span></div>
+
+        <div class="status-tag">
+            <span class="dot"></span>
+            No Internet Connection
+        </div>
+
+        <h1>You're Offline</h1>
+        <p>Looks like you've lost your connection. Check your Wi-Fi or mobile data and try again. Your previously viewed pages may still be available.</p>
+
+        <a href="/" class="btn-retry" onclick="window.location.reload(); return false;">
+            <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-3.51"></path></svg>
+            Try Again
+        </a>
+
+        <div class="cached-note">
+            💾 You can still browse <a href="/index.html">The Feed</a> and <a href="/businesses.html">Business Zone</a> if they were previously loaded.
+        </div>
+    </div>
+</body>
+</html>

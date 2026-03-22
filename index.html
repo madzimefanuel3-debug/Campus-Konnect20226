@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ══ Primary SEO ══════════════════════════════════════════════ -->
+    <title>Campus Konnect | Discover Campus Businesses &amp; Adverts</title>
+    <meta name="description" content="Campus Konnect is the #1 platform for discovering student businesses, food spots, tech services, and campus adverts in real-time. Join thousands of students today.">
+    <meta name="keywords" content="campus businesses, student adverts, campus food, student services, campus marketplace, university businesses, student entrepreneurs">
+    <meta name="author" content="Campus Konnect">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://campus-konnect-pwa.vercel.app/index.html">
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE_HERE">
+
+    <!-- ══ Open Graph (Facebook, WhatsApp, LinkedIn) ════════════════ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Campus Konnect">
+    <meta property="og:title" content="Campus Konnect | Discover Campus Businesses &amp; Adverts">
+    <meta property="og:description" content="The #1 real-time platform for discovering student businesses, food spots, tech services, and campus adverts. Join thousands of students today.">
+    <meta property="og:url" content="https://campus-konnect-pwa.vercel.app/index.html">
+    <meta property="og:image" content="https://campus-konnect-pwa.vercel.app/icon-512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="Campus Konnect – Campus Business Discovery Platform">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ══ Twitter / X Card ══════════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CampusKonnect">
+    <meta name="twitter:title" content="Campus Konnect | Discover Campus Businesses &amp; Adverts">
+    <meta name="twitter:description" content="The #1 real-time platform for discovering student businesses, food spots, and campus services.">
+    <meta name="twitter:image" content="https://campus-konnect-pwa.vercel.app/icon-512.png">
+    <meta name="twitter:image:alt" content="Campus Konnect App Icon">
+
+    <!-- ══ JSON-LD Structured Data ════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://campus-konnect-pwa.vercel.app/#website",
+          "url": "https://campus-konnect-pwa.vercel.app",
+          "name": "Campus Konnect",
+          "description": "The #1 real-time platform for discovering student businesses, adverts, and campus services.",
+          "inLanguage": "en-US",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://campus-konnect-pwa.vercel.app/index.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://campus-konnect-pwa.vercel.app/index.html#webpage",
+          "url": "https://campus-konnect-pwa.vercel.app/index.html",
+          "name": "Campus Konnect | Discover Campus Businesses & Adverts",
+          "description": "Discover the hottest student businesses, food spots, tech services, and campus adverts in real-time.",
+          "isPartOf": { "@id": "https://campus-konnect-pwa.vercel.app/#website" },
+          "inLanguage": "en-US",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Feed",
+              "item": "https://campus-konnect-pwa.vercel.app/index.html"
+            }]
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://campus-konnect-pwa.vercel.app/#organization",
+          "name": "Campus Konnect",
+          "url": "https://campus-konnect-pwa.vercel.app",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://campus-konnect-pwa.vercel.app/icon-512.png",
+            "width": 512,
+            "height": 512
+          },
+          "sameAs": []
+        }
+      ]
+    }
+    </script>
+
+    <!-- ══ Fonts &amp; Styles ══════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ══ PWA ════════════════════════════════════════════════════════ -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#9333ea">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon-72.png">
+</head>
+<body class="feed-body">
+    <!-- Dynamic Background Orbs -->
+    <div class="feed-bg">
+        <div class="glow-orb purple-orb" style="top: 10%; left: 20%; animation: float 10s infinite alternate;"></div>
+        <div class="glow-orb orange-orb" style="top: 50%; right: 10%; animation: float 15s infinite alternate-reverse;"></div>
+        <div class="glow-orb purple-orb" style="bottom: 0%; left: 40%; width: 500px; height: 500px; opacity: 0.3;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html"><span class="purple-text">Campus</span><span class="orange-text">Konnect</span></a>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" style="color: white; text-shadow: 0 0 10px rgba(147, 51, 234, 0.5);">Feed</a>
+                <a href="businesses.html">Business Zone</a>
+            </div>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Feed -->
+    <main class="feed-main section-padding" style="padding-top: 120px;" id="feed">
+        <div class="feed-header text-center mb-5 reveal fade-up">
+            <h1 class="bold-headline" style="font-size: clamp(2.5rem, 5vw, 4rem);">The <span class="gradient-text">Feed</span></h1>
+            <p class="section-subtitle mx-auto">Discover the hottest student businesses, food spots, and services near your campus.</p>
+        </div>
+        
+        <div class="search-container mx-auto reveal fade-up" style="max-width: 600px; margin-bottom: 3rem; position: relative;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="feed-search" class="search-input w-100" placeholder="Search adverts, businesses, or keywords...">
+        </div>
+
+        <div class="feed-column">
+            
+            <!-- Post 1: Boarding House Agents -->
+            <article class="feed-post liquid-glass tilt-interactive reveal fade-up delay-1">
+                <div class="post-glow"></div>
+                <header class="post-header">
+                    <div class="post-identity">
+                        <div class="avatar bg-gradient-purple">BH</div>
+                        <div class="post-meta">
+                            <h3 class="biz-name">Elite Boarding Agents</h3>
+                            <span class="biz-category">Accommodation</span>
+                        </div>
+                    </div>
+                    <div class="post-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-val">4.9</span>
+                    </div>
+                </header>
+                <div class="post-content">
+                    <p class="post-text">Looking for off-campus housing for the next semester? We have the best luxury and budget-friendly apartments fully furnished and ready for students! 🏠✨ Book a tour today!</p>
+                    <div class="post-media image-media">
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Apartment preview" loading="lazy">
+                        <div class="media-overlay"></div>
+                    </div>
+                </div>
+                <footer class="post-footer">
+                    <div class="interaction-bar">
+                        <button class="action-btn like-btn" data-liked="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <span class="count">4.2k</span>
+                        </button>
+                        <button class="action-btn recommend-btn" data-recc="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            <span class="count">892</span> Recommended
+                        </button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="WhatsApp" class="social-icon wa-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+                        <a href="#" aria-label="Facebook" class="social-icon fb-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                        <a href="#" aria-label="Instagram" class="social-icon ig-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Post 2: Shawarma Place (Video Advert Simulation) -->
+            <article class="feed-post liquid-glass tilt-interactive reveal fade-up">
+                <div class="post-glow"></div>
+                <header class="post-header">
+                    <div class="post-identity">
+                        <div class="avatar bg-gradient-orange">SP</div>
+                        <div class="post-meta">
+                            <h3 class="biz-name">Midnight Shawarma</h3>
+                            <span class="biz-category">Food & Beverages</span>
+                        </div>
+                    </div>
+                    <div class="post-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-val">5.0</span>
+                    </div>
+                </header>
+                <div class="post-content">
+                    <p class="post-text">Craving late-night flavors? 🌯🔥 Watch our chefs prepare the juiciest beef and chicken shawarmas on campus! We deliver until 3 AM directly to your dorm. Use code NANO10 for 10% off!</p>
+                    <div class="post-media video-media">
+                        <!-- Abstract placeholder simulating a video -->
+                        <div class="video-placeholder">
+                            <div class="play-btn">
+                                <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                            <div class="vid-bg"></div>
+                        </div>
+                        <div class="media-overlay"></div>
+                    </div>
+                </div>
+                <!-- Footer -->
+                <footer class="post-footer">
+                    <div class="interaction-bar">
+                        <button class="action-btn like-btn" data-liked="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <span class="count">8.1k</span>
+                        </button>
+                        <button class="action-btn recommend-btn" data-recc="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            <span class="count">2.4k</span> Recommended
+                        </button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="WhatsApp" class="social-icon wa-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382..."></path></svg></a>
+                        <a href="#" aria-label="Facebook" class="social-icon fb-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073..."></path></svg></a>
+                        <a href="#" aria-label="Instagram" class="social-icon ig-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Post 3: Ice Cream Place -->
+            <article class="feed-post liquid-glass tilt-interactive reveal fade-up">
+                <div class="post-glow" style="background:var(--purple-light);"></div>
+                <header class="post-header">
+                    <div class="post-identity">
+                        <div class="avatar bg-gradient-purple">FC</div>
+                        <div class="post-meta">
+                            <h3 class="biz-name">Frosty Cones</h3>
+                            <span class="biz-category">Food & Beverages</span>
+                        </div>
+                    </div>
+                    <div class="post-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-val">4.6</span>
+                    </div>
+                </header>
+                <div class="post-content">
+                    <p class="post-text">Cool down after a heavy study session! 🍨 Come grab our signature purple-velvet soft serve at the Student Center. We now serve vegan options and massive sundae bowls for group study breaks.</p>
+                    <div class="post-media image-media" style="aspect-ratio: 4/3;">
+                        <img src="https://images.unsplash.com/photo-1570197781417-0a52375c3db7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ice Cream Display" loading="lazy">
+                        <div class="media-overlay"></div>
+                    </div>
+                </div>
+                <footer class="post-footer">
+                    <div class="interaction-bar">
+                        <button class="action-btn like-btn" data-liked="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61..."></path></svg>
+                            <span class="count">1.5k</span>
+                        </button>
+                        <button class="action-btn recommend-btn" data-recc="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            <span class="count">412</span> Recommended
+                        </button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon ig-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Post 4: Tech Store -->
+            <article class="feed-post liquid-glass tilt-interactive reveal fade-up">
+                <div class="post-glow" style="background:var(--orange-primary);"></div>
+                <header class="post-header">
+                    <div class="post-identity">
+                        <div class="avatar bg-gradient-orange">NT</div>
+                        <div class="post-meta">
+                            <h3 class="biz-name">Nano Tech Repairs</h3>
+                            <span class="biz-category">Electronics & Tech</span>
+                        </div>
+                    </div>
+                    <div class="post-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-val">4.9</span>
+                    </div>
+                </header>
+                <div class="post-content">
+                    <p class="post-text">Broken laptop screen? Battery dying mid-lecture? 💻🔧 We offer lightning-fast, high-quality tech repairs exclusively for students. Drop it off before class, pick it up fully fixed. Reliable, transparent, affordable. ⚡</p>
+                    <div class="post-media image-media">
+                        <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tech Repair" loading="lazy">
+                        <div class="media-overlay"></div>
+                    </div>
+                </div>
+                <footer class="post-footer">
+                    <div class="interaction-bar">
+                        <button class="action-btn like-btn" data-liked="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61..."></path></svg>
+                            <span class="count">2.9k</span>
+                        </button>
+                        <button class="action-btn recommend-btn" data-recc="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            <span class="count">755</span> Recommended
+                        </button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="WhatsApp" class="social-icon wa-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297..."></path></svg></a>
+                        <a href="#" aria-label="Facebook" class="social-icon fb-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073..."></path></svg></a>
+                        <a href="#" aria-label="Instagram" class="social-icon ig-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Post 5: Beauty & Cosmetics -->
+            <article class="feed-post liquid-glass tilt-interactive reveal fade-up">
+                <div class="post-glow" style="background:#f472b6;"></div>
+                <header class="post-header">
+                    <div class="post-identity">
+                        <div class="avatar" style="background: linear-gradient(135deg, #fbcfe8, #f472b6);">GC</div>
+                        <div class="post-meta">
+                            <h3 class="biz-name">Glamour Cosmetics</h3>
+                            <span class="biz-category">Beauty & Cosmetics</span>
+                        </div>
+                    </div>
+                    <div class="post-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-val">4.8</span>
+                    </div>
+                </header>
+                <div class="post-content">
+                    <p class="post-text">Get weekend-ready! ✨💄 We just dropped our new collection of affordable, long-lasting matte lipsticks. Perfect for all-day wear. DM us to book a mobile makeup session for your next campus event!</p>
+                    <div class="post-media image-media">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cosmetics" loading="lazy">
+                        <div class="media-overlay"></div>
+                    </div>
+                </div>
+                <footer class="post-footer">
+                    <div class="interaction-bar">
+                        <button class="action-btn like-btn" data-liked="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <span class="count">3.4k</span>
+                        </button>
+                        <button class="action-btn recommend-btn" data-recc="false">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            <span class="count">622</span> Recommended
+                        </button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon ig-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- End of Feed Loader -->
+            <div class="feed-loader text-center my-5 pb-5">
+                <div class="pulse-dot mx-auto" style="border-radius: 50%; background: var(--purple-primary);"></div>
+                <p style="color: var(--text-secondary); margin-top: 1rem;">Loading more campus adverts...</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Konnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Business Catalogue Overlay Framework -->
+    <div class="profile-modal" id="catalogueModal">
+        <div class="modal-overlay" onclick="closeCatalogue()"></div>
+        <div class="catalogue-container">
+            <button class="close-catalogue" onclick="closeCatalogue()">&times;</button>
+            <div class="catalogue-header" id="cat-header">
+                <!-- Injected via JS -->
+            </div>
+            <div class="catalogue-body">
+                <div class="catalogue-grid" id="cat-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

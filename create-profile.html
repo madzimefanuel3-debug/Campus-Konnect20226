@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ══ Primary SEO ══════════════════════════════════════════════ -->
+    <title>Create Business Profile | Campus Konnect</title>
+    <meta name="description" content="Register and launch your campus business profile on Campus Konnect. Set up your brand, upload your logo, and start reaching thousands of students instantly.">
+    <meta name="author" content="Campus Konnect">
+    <!-- Private form page: indexed but not followed for crawling form submissions -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://campuskonnect.app/create-profile.html">
+
+    <!-- ══ Open Graph ════════════════════════════════════════════════ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Campus Konnect">
+    <meta property="og:title" content="Create Business Profile | Campus Konnect">
+    <meta property="og:description" content="Register your campus business and start reaching thousands of students instantly.">
+    <meta property="og:url" content="https://campuskonnect.app/create-profile.html">
+    <meta property="og:image" content="https://campuskonnect.app/icon-512.png">
+
+    <!-- ══ JSON-LD Structured Data ════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://campuskonnect.app/create-profile.html#webpage",
+      "url": "https://campuskonnect.app/create-profile.html",
+      "name": "Create Business Profile | Campus Konnect",
+      "description": "Register your campus business on Campus Konnect.",
+      "isPartOf": { "@id": "https://campuskonnect.app/#website" },
+      "inLanguage": "en-US",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://campuskonnect.app/index.html" },
+          { "@type": "ListItem", "position": 2, "name": "Business Zone", "item": "https://campuskonnect.app/businesses.html" },
+          { "@type": "ListItem", "position": 3, "name": "Create Profile", "item": "https://campuskonnect.app/create-profile.html" }
+        ]
+      }
+    }
+    </script>
+
+    <!-- ══ Fonts &amp; Styles ══════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ══ PWA ════════════════════════════════════════════════════════ -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#9333ea">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon-72.png">
+</head>
+<body class="feed-body">
+    <!-- Dynamic Background Orbs -->
+    <div class="feed-bg">
+        <div class="glow-orb purple-orb" style="top: 10%; left: 20%; animation: float 10s infinite alternate;"></div>
+        <div class="glow-orb orange-orb" style="top: 50%; right: 10%; animation: float 15s infinite alternate-reverse;"></div>
+        <div class="glow-orb purple-orb" style="bottom: 0%; left: 40%; width: 500px; height: 500px; opacity: 0.3;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html"><span class="purple-text">Campus</span><span class="orange-text">Konnect</span></a>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Feed</a>
+                <a href="businesses.html">Business Zone</a>
+            </div>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Profile Creation Area -->
+    <main class="feed-main section-padding" style="padding-top: 120px; max-width: 800px; margin: 0 auto; position: relative; z-index: 2;" id="create-profile">
+        <div class="feed-header text-center mb-5 reveal fade-up">
+            <h1 class="bold-headline" style="font-size: clamp(2.5rem, 5vw, 4rem);">Create <span class="gradient-text">Business Profile</span></h1>
+            <p class="section-subtitle mx-auto">Set up your business presence, upload your logo, and attract students across campus.</p>
+        </div>
+
+        <div class="profile-form-container liquid-glass reveal fade-up delay-1">
+            <form id="profile-form" class="biz-form">
+                
+                <!-- Profile Picture Upload Feature -->
+                <div class="form-group picture-upload-group text-center">
+                    <div class="profile-pic-preview" id="pic-preview">
+                        <span class="placeholder-text">Upload Logo</span>
+                    </div>
+                    <!-- Hidden file input triggered by the stylized label -->
+                    <input type="file" id="profile_picture" name="profile_picture" accept="image/png, image/jpeg, image/webp" hidden>
+                    <label for="profile_picture" class="btn btn-secondary mt-3 upload-btn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        Choose Picture
+                    </label>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 10px;">Recommended size: 400x400px</p>
+                </div>
+
+                <!-- Text Requirements -->
+                <div class="form-group">
+                    <label for="business_name">Business Name</label>
+                    <input type="text" id="business_name" class="search-input w-100" placeholder="e.g. Midnight Shawarma" required style="max-width: 100%;">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" class="search-input w-100" required style="max-width: 100%;">
+                        <option value="" disabled selected>Select a Category...</option>
+                        <option value="Food & Beverages">Food & Beverages</option>
+                        <option value="Accommodation">Accommodation</option>
+                        <option value="Electronics & Tech">Electronics & Tech</option>
+                        <option value="Beauty & Cosmetics">Beauty & Cosmetics</option>
+                        <option value="Tutoring & Academic">Tutoring & Academic</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Business Description</label>
+                    <textarea id="description" class="search-input w-100" rows="4" placeholder="What makes your business special?" required style="max-width: 100%; border-radius: 12px; resize: vertical; padding-top: 15px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_phone">Contact Phone</label>
+                    <input type="tel" id="contact_phone" class="search-input w-100" placeholder="e.g. +1 555 123 4567" style="max-width: 100%;">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-4" style="font-size: 1.1rem; padding: 1rem;">Launch Profile</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="position: relative; z-index: 2;">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Konnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

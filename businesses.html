@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ══ Primary SEO ══════════════════════════════════════════════ -->
+    <title>Business Zone | Grow Your Campus Business – Campus Konnect</title>
+    <meta name="description" content="The Campus Konnect Business Zone: advertise, market, and grow your student business. Browse verified campus businesses, pricing plans, and join the K50–K1000 partner network.">
+    <meta name="keywords" content="campus business advertising, student business marketing, campus business directory, university startup, student entrepreneur, campus hosting, Zambia student business">
+    <meta name="author" content="Campus Konnect">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://campus-konnect-pwa.vercel.app/businesses.html">
+
+    <!-- ══ Open Graph ════════════════════════════════════════════════ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Campus Konnect">
+    <meta property="og:title" content="Business Zone | Grow Your Campus Business – Campus Konnect">
+    <meta property="og:description" content="Advertise, market and grow your student business on Campus Konnect. Join the campus partner network with plans from K50/month.">
+    <meta property="og:url" content="https://campus-konnect-pwa.vercel.app/businesses.html">
+    <meta property="og:image" content="https://campus-konnect-pwa.vercel.app/icon-512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="Campus Konnect Business Zone">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ══ Twitter / X Card ══════════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@CampusKonnect">
+    <meta name="twitter:title" content="Business Zone | Grow Your Campus Business – Campus Konnect">
+    <meta name="twitter:description" content="Advertise, market and grow your student business. Join the campus partner network with plans from K50/month.">
+    <meta name="twitter:image" content="https://campus-konnect-pwa.vercel.app/icon-512.png">
+
+    <!-- ══ JSON-LD Structured Data ════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://campus-konnect-pwa.vercel.app/businesses.html#webpage",
+          "url": "https://campus-konnect-pwa.vercel.app/businesses.html",
+          "name": "Business Zone | Grow Your Campus Business – Campus Konnect",
+          "description": "Advertise, market and grow your student business on Campus Konnect.",
+          "isPartOf": { "@id": "https://campus-konnect-pwa.vercel.app/#website" },
+          "inLanguage": "en-US",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://campus-konnect-pwa.vercel.app/index.html" },
+              { "@type": "ListItem", "position": 2, "name": "Business Zone", "item": "https://campus-konnect-pwa.vercel.app/businesses.html" }
+            ]
+          }
+        },
+        {
+          "@type": "ItemList",
+          "name": "Campus Konnect Business Directory",
+          "description": "Verified campus businesses available on the Campus Konnect platform.",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Nano Tech Solutions", "description": "Hardware repairs, custom PC builds, and local tech support for students." },
+            { "@type": "ListItem", "position": 2, "name": "Midnight Bites", "description": "Late night campus food delivery. Baked goods and hot meals to your dorm." },
+            { "@type": "ListItem", "position": 3, "name": "Aura Studios", "description": "Branding, graphic design, and marketing for campus clubs and startups." },
+            { "@type": "ListItem", "position": 4, "name": "Glamour Cosmetics", "description": "High quality, affordable beauty products and mobile makeup artistry." }
+          ]
+        },
+        {
+          "@type": "OfferCatalog",
+          "name": "Campus Konnect Subscription Plans",
+          "itemListElement": [
+            { "@type": "Offer", "name": "Basic Partner", "price": "50", "priceCurrency": "ZMW", "description": "5 ad slots/month, verified profile, standard hosting" },
+            { "@type": "Offer", "name": "Pro Partner",   "price": "200", "priceCurrency": "ZMW", "description": "15 ad slots/month, priority placement, fast hosting" },
+            { "@type": "Offer", "name": "Lifetime Sponsorship", "price": "1000", "priceCurrency": "ZMW", "description": "Unlimited ads, VIP profile, #1 priority placement" }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- ══ Fonts &amp; Styles ══════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ══ PWA ════════════════════════════════════════════════════════ -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#9333ea">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon-72.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html"><span class="purple-text">Campus</span><span class="orange-text">Konnect</span></a>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Feed</a>
+                <a href="businesses.html" style="color: white; text-shadow: 0 0 10px rgba(147, 51, 234, 0.5);">Business Zone</a>
+            </div>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Business Hero Section -->
+    <header class="hero business-hero" id="home">
+        <div class="glow-orb purple-orb" style="top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 300px; filter: blur(150px);"></div>
+        <div class="container hero-content">
+            <div class="badge-tag reveal fade-up">For Campus Businesses</div>
+            <h1 class="bold-headline reveal fade-up delay-1">Amplify Your <span class="gradient-text">Reach</span></h1>
+            <p class="subheading reveal fade-up delay-2">Marketing. Hosting. Advertising. Built for everyone to scale their student ventures.</p>
+            <div class="core-values reveal fade-up delay-3">
+                <span>Transparency</span> • <span>Popularity</span> • <span>For Everyone</span>
+            </div>
+            <div class="hero-cta reveal fade-up delay-3" style="margin-top: 2rem;">
+                <a href="#zone" class="btn btn-primary btn-large">Explore The Zone</a>
+                <a href="#pricing" class="btn btn-secondary btn-large">View Pricing</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Business Zone / Directory -->
+    <section class="business-zone section-padding" id="zone">
+        <div class="container">
+            <div class="section-header reveal fade-up">
+                <h2 class="section-title">The <span class="purple-text">Business Zone</span></h2>
+                <p class="section-subtitle">Discover, advertise, and recommend top-tier student businesses on campus. Create your profile to join the network.</p>
+            </div>
+            
+            <div class="search-container mx-auto reveal fade-up" style="max-width: 600px; margin-bottom: 2rem; position: relative;">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="zone-search" class="search-input w-100" placeholder="Search directory...">
+            </div>
+
+            <div class="directory-filter reveal fade-up delay-1">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Tech Services</button>
+                <button class="filter-btn">Food & Beverages</button>
+                <button class="filter-btn">Beauty & Cosmetics</button>
+                <button class="filter-btn">Design & Marketing</button>
+            </div>
+
+            <div class="biz-grid">
+                <!-- Biz Card 1 -->
+                <div class="biz-card reveal fade-up">
+                    <div class="biz-banner tech-banner"></div>
+                    <div class="biz-content">
+                        <div class="biz-header">
+                            <h3>Nano Tech Solutions</h3>
+                            <span class="ad-badge">Promoted</span>
+                        </div>
+                        <p>Hardware repairs, custom PC builds, and local tech support for students.</p>
+                        <div class="biz-metrics">
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 124 Recommends</div>
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 2.1k Views</div>
+                        </div>
+                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                    </div>
+                </div>
+
+                <!-- Biz Card 2 -->
+                <div class="biz-card reveal fade-up delay-1">
+                    <div class="biz-banner food-banner"></div>
+                    <div class="biz-content">
+                        <div class="biz-header">
+                            <h3>Midnight Bites</h3>
+                        </div>
+                        <p>Late night campus food delivery. Baked goods and hot meals right to your dorm.</p>
+                        <div class="biz-metrics">
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 342 Recommends</div>
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 5.4k Views</div>
+                        </div>
+                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                    </div>
+                </div>
+
+                <!-- Biz Card 3 -->
+                <div class="biz-card reveal fade-up delay-2">
+                    <div class="biz-banner design-banner"></div>
+                    <div class="biz-content">
+                        <div class="biz-header">
+                            <h3>Aura Studios</h3>
+                        </div>
+                        <p>Branding, graphic design, and marketing material for campus clubs and startups.</p>
+                        <div class="biz-metrics">
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 89 Recommends</div>
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 1.2k Views</div>
+                        </div>
+                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                    </div>
+                </div>
+
+                <!-- Biz Card 4 -->
+                <div class="biz-card reveal fade-up delay-3">
+                    <div class="biz-banner" style="background: linear-gradient(135deg, #fbcfe8, #f472b6);"></div>
+                    <div class="biz-content">
+                        <div class="biz-header">
+                            <h3>Glamour Cosmetics</h3>
+                        </div>
+                        <p>High quality, affordable beauty products and mobile makeup artistry for events.</p>
+                        <div class="biz-metrics">
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 211 Recommends</div>
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 3.8k Views</div>
+                        </div>
+                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                    </div>
+                </div>
+
+                <!-- Biz Card 5 -->
+                <div class="biz-card reveal fade-up delay-1">
+                    <div class="biz-banner" style="background: linear-gradient(135deg, #10b981, #047857);"></div>
+                    <div class="biz-content">
+                        <div class="biz-header">
+                            <h3>Snack Haven</h3>
+                        </div>
+                        <p>Imported sodas, rare candies, and premium study snacks delivered to the library.</p>
+                        <div class="biz-metrics">
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 512 Recommends</div>
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 6.5k Views</div>
+                        </div>
+                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                    </div>
+                </div>
+
+                <!-- Biz Card 6 -->
+                <div class="biz-card reveal fade-up delay-2">
+                    <div class="biz-banner" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);"></div>
+                    <div class="biz-content">
+                        <div class="biz-header">
+                            <h3>CodeCrafters Web</h3>
+                        </div>
+                        <p>Freelance student web developers building affordable landing pages and portfolios.</p>
+                        <div class="biz-metrics">
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 84 Recommends</div>
+                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 900 Views</div>
+                        </div>
+                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Header (Merged) -->
+    <section class="services section-padding" style="background: transparent;" id="services">
+        <div class="container">
+            <div class="section-header reveal fade-up mx-auto text-center" style="margin-bottom: 4rem;">
+                <h2 class="section-title">Campus Konnect <span class="purple-text">Services</span></h2>
+                <p class="section-subtitle mx-auto">Discover how we empower campus businesses through our core strategic digital tools.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card reveal fade-up delay-1">
+                    <div class="icon-wrapper purple-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <h3>Advertising</h3>
+                    <p>Launch targeted visual and video campaigns directly into the highly interactive Campus Konnect social feed to maximize student engagement.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card reveal fade-up delay-2">
+                    <div class="icon-wrapper orange-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                    </div>
+                    <h3>Web Hosting</h3>
+                    <p>Secure, ultra-fast, and reliable hosting solutions explicitly tailored for student portfolios, apps, and growing campus startups.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card reveal fade-up delay-3">
+                    <div class="icon-wrapper purple-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                    </div>
+                    <h3>Promoting</h3>
+                    <p>Boost your brand with exclusive featured slots in the Business Zone grid, priority directory indexing, and official platform endorsements.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card reveal fade-up delay-3">
+                    <div class="icon-wrapper orange-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    </div>
+                    <h3>Networking</h3>
+                    <p>Plug into the Konnect Card referral ecosystem to organically link your business offerings with thousands of eager campus customers.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card reveal fade-up delay-1">
+                    <div class="icon-wrapper purple-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Unlock real-time data dashboards tracking profile views, ad engagement, and student demographics to optimize your marketing ROI.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card reveal fade-up delay-2">
+                    <div class="icon-wrapper orange-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <h3>Campus SEO</h3>
+                    <p>Benefit from priority campus directory indexing. Ensure your brand always shows up first when students search for specific needs.</p>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="service-card reveal fade-up delay-3">
+                    <div class="icon-wrapper purple-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </div>
+                    <h3>Automated Retargeting</h3>
+                    <p>Deploy integrated push notifications and email marketing blasts to instantly alert your followers about flash sales or new product drops.</p>
+                </div>
+
+                <!-- Service 8 -->
+                <div class="service-card reveal fade-up delay-3">
+                    <div class="icon-wrapper orange-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>Ambassador Matching</h3>
+                    <p>Connect seamlessly with verified campus ambassadors and micro-influencers to natively promote your products through viral word-of-mouth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section (Merged) -->
+    <section class="how-it-works section-padding" id="how-it-works" style="background: transparent;">
+        <div class="container">
+            <div class="section-header reveal fade-up mx-auto text-center" style="align-items: center; margin-bottom: 4rem;">
+                <h2 class="section-title">How <span class="gradient-text">Campus Konnect</span> Works</h2>
+                <p class="section-subtitle mx-auto">The referral and Konnect Card system explained in 3 simple steps.</p>
+            </div>
+            
+            <div class="how-it-works-grid" style="margin-top: 2rem;">
+                <!-- 3D Card Visual -->
+                <div class="konnect-card-3d-wrapper reveal fade-right delay-1">
+                    <div class="konnect-card" id="konnect-card">
+                        <div class="card-glow"></div>
+                        <div class="card-chip"></div>
+                        <div class="card-logo">KONNECT</div>
+                        <div class="card-number">•••• •••• •••• 4208</div>
+                        <div class="card-holder">
+                            <span>Exclusive Member</span>
+                            <span>Valid 12/28</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Steps -->
+                <div class="steps-container reveal fade-left delay-2" style="margin-top: 0;">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Get Your Konnect Card</h3>
+                            <p>Register on the platform to receive your digital or physical Konnect Card, granting you access to the entire Campus Konnect ecosystem.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>Access The Network</h3>
+                            <p>Use your card to unlock exclusive student discounts and VIP access to partnered campus businesses, events, and services.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Refer & Earn</h3>
+                            <p>Invite friends to the platform using your unique referral code. Earn commission and lifetime rewards for every successful network expansion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unified Subscription / Pricing Section -->
+    <section class="pricing-section section-padding" id="pricing" style="background: radial-gradient(circle at 50% 10%, rgba(147, 51, 234, 0.05), transparent 60%);">
+        <div class="container">
+            <div class="section-header reveal fade-up text-center mx-auto" style="margin-bottom: 4rem;">
+                <div class="badge-tag mx-auto mb-3" style="width: max-content;">All-In-One Platform</div>
+                <h2 class="section-title" style="font-size: clamp(2rem, 5vw, 3.5rem);">Campus <span class="gradient-text">Subscriptions</span></h2>
+                <p class="section-subtitle mx-auto">One unified payment system. Unlock powerful marketing, hosting tools, and top-tier services to rapidly grow your campus business popularity.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Early Adopter Tier -->
+                <div class="pricing-card reveal fade-up">
+                    <div class="pricing-header">
+                        <span class="pricing-tag">Available for first 30 businesses</span>
+                        <h3>Early Adopter</h3>
+                        <div class="price">
+                            <span class="currency">K</span>0<span class="period">/mo for 3 months</span>
+                        </div>
+                        <p>Then standard rate applies. Start growing risk-free.</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Standard Business Profile Listing</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 1 Promoted Ad Slot per month</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Recommendation Tracking</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Basic Hosting</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-secondary w-100">Claim 3 Months Free</button>
+                </div>
+
+                <!-- Partner Basic Tier -->
+                <div class="pricing-card reveal fade-up delay-1">
+                    <div class="pricing-header">
+                        <span class="pricing-tag">Standard Partner</span>
+                        <h3>Basic Partner</h3>
+                        <div class="price">
+                            <span class="currency">K</span>50<span class="period">/mo</span>
+                        </div>
+                        <p>Affordable marketing for growing campus brands.</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Verified Profile Listing</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 5 Promoted Ad Slots/mo</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Standard Search Visibility</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Standard Hosting</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-secondary w-100">Start Basic Partner</button>
+                </div>
+
+                <!-- Partner Pro Tier -->
+                <div class="pricing-card reveal fade-up delay-2">
+                    <div class="pricing-header">
+                        <span class="pricing-tag">Pro Partner</span>
+                        <h3>Pro Partner</h3>
+                        <div class="price">
+                            <span class="currency">K</span>200<span class="period">/mo</span>
+                        </div>
+                        <p>Advanced exposure for established student ventures.</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Prioritized Verified Profile</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 15 Promoted Ad Slots/mo</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority Search Placement</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--purple-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Fast Hosting</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-secondary w-100">Start Pro Partner</button>
+                </div>
+
+                <!-- Lifetime Sponsor Tier -->
+                <div class="pricing-card premium-card reveal fade-up delay-3">
+                    <div class="pricing-glow"></div>
+                    <div class="pricing-header">
+                        <span class="pricing-tag premium-tag">Only 10 Partners Allowed</span>
+                        <h3>Lifetime Sponsorship</h3>
+                        <div class="price">
+                            <span class="currency">K</span>1000<span class="period">/one-time</span>
+                        </div>
+                        <p>Ultimate marketing power and perpetual platform visibility.</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--orange-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> VIP Business Profile</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--orange-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Infinite Rotational Ad Placements</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--orange-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> #1 Priority Search & Recommendations</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--orange-primary)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Premium Hosting & Subdomain</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary glow-btn w-100">Become a Partner</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Portal Login -->
+    <section class="business-login-section section-padding" id="business-login">
+        <div class="container" style="max-width: 500px;">
+            <div class="login-card reveal fade-up">
+                <div class="login-header text-center">
+                    <div class="icon-wrapper orange-bg" style="margin: 0 auto 1.5rem auto;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <h2>Business <span class="purple-text">Portal</span></h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Exclusive access for managing your campus business profile and marketing metrics.</p>
+                </div>
+                <form class="login-form">
+                    <div class="form-group">
+                        <label>Business Email</label>
+                        <input type="email" placeholder="ceo@nanotech.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Access Portal</button>
+                    <div class="text-center" style="margin-top: 1rem;">
+                        <a href="#pricing" style="color: var(--text-secondary); font-size: 0.875rem;">Not registered? View Subscription Options</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="purple-text">Campus</span><span class="orange-text">Konnect</span>
+                    </div>
+                    <p>Empowering students to build, trade, and secure their future through the power of connection.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Feed</a>
+                    <a href="businesses.html">Business Zone</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <a href="mailto:hello@campuskonnect.app" class="contact-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span>hello@campuskonnect.app</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Campus Konnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

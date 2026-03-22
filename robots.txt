@@ -1,0 +1,23 @@
+# Campus Konnect — robots.txt
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Block crawlers from private/admin areas
+Disallow: /admin.html
+Disallow: /backend/
+Disallow: /offline.html
+
+# Block common nuisance crawlers that ignore standard rules
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://campus-konnect-pwa.vercel.app/sitemap.xml

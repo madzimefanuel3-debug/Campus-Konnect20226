@@ -13,22 +13,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const API = location.hostname.includes('vercel.app') ? '' : API_BASE;
 
 
-    // 1. Mobile Menu Toggle
+    // =================================================================
+    // 1. Navbar: Scroll glassmorphism + hamburger + active link
+    // =================================================================
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const navbar = document.getElementById('navbar');
-    
-    mobileMenuToggle.addEventListener('click', () => {
-        mobileMenuToggle.classList.toggle('active');
-        navbar.classList.toggle('nav-active');
-    });
+    const navbar           = document.getElementById('navbar');
+    const navLinksEl       = document.getElementById('nav-links');
 
-    // Close menu when a link is clicked
-    const navLinks = document.querySelectorAll('.nav-links a, .nav-actions a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuToggle.classList.remove('active');
-            navbar.classList.remove('nav-active');
+    // ── Scroll: add/remove .scrolled class for denser glass ──────
+    const onScroll = () => {
+        if (window.scrollY > 20) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on load
+
+    // ── Hamburger toggle ─────────────────────────────────────────
+    if (mobileMenuToggle && navLinksEl) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenuToggle.classList.toggle('open');
+            navLinksEl.classList.toggle('nav-open', isOpen);
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
+
+        // Close when a nav link is clicked
+        navLinksEl.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('open');
+                navLinksEl.classList.remove('nav-open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close on backdrop click (outside the panel)
+        document.addEventListener('click', (e) => {
+            if (navLinksEl.classList.contains('nav-open')
+                && !navLinksEl.contains(e.target)
+                && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.classList.remove('open');
+                navLinksEl.classList.remove('nav-open');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // ── Active link highlight ─────────────────────────────────────
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.includes(currentPage)) {
+            link.classList.add('active');
+        }
     });
 
     // 2. Scroll Reveal Animations utilizing Intersection Observer

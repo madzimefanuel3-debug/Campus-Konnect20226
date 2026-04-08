@@ -366,47 +366,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const installBannerHTML = `
     <div id="pwa-install-banner" style="
-        position: fixed; bottom: -80px; right: 20px;
-        background: rgba(8,9,15,0.9);
-        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(0,243,255,0.4);
-        border-radius: 50px;
-        padding: 6px 6px 6px 15px;
-        display: flex; align-items: center; gap: 12px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 15px rgba(0,243,255,0.2);
+        position: fixed; bottom: -100px; right: 20px;
         z-index: 9999;
-        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        animation: pwa-pulse 3s infinite;
+        display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+        transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
     ">
-        <div style="display:flex; align-items:center; gap: 8px; cursor: pointer;" id="pwa-install-btn">
-            <img src="assets/logo.svg" alt="" style="width:20px; height:20px; filter:drop-shadow(0 0 4px #00f3ff);">
-            <span style="color: #fff; font-size: 0.8rem; font-weight: 700; font-family: 'Inter', sans-serif; white-space: nowrap;">
-                Install App
-            </span>
-        </div>
+        <!-- Close Button -->
         <button id="pwa-install-dismiss" style="
-            width: 28px; height: 28px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); border: none;
-            color: #fff; font-size: 14px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s;
+            width: 24px; height: 24px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; font-size: 10px; cursor: pointer;
+            backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center;
+            opacity: 0.8; transition: 0.2s;
         ">✕</button>
-        
+
+        <!-- Main FAB Icon -->
+        <div id="pwa-install-btn" style="
+            width: 60px; height: 60px; border-radius: 50%;
+            background: rgba(8, 9, 15, 0.7);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 243, 255, 0.5);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,243,255,0.1);
+            animation: fab-float 3s ease-in-out infinite;
+        ">
+            <img src="assets/icon.svg" alt="Install" style="width:32px; height:32px; filter: drop-shadow(0 0 8px rgba(0,243,255,0.4));">
+        </div>
+
         <!-- Tooltip Instructions for iOS/Firefox -->
         <div id="ios-guide" style="
-            display: none; position: absolute; bottom: 60px; right: 0;
-            width: 240px; background: rgba(8,9,15,0.98); border: 1px solid #00f3ff;
-            border-radius: 12px; padding: 12px; color: #fff; font-size: 0.75rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            display: none; position: absolute; bottom: 85px; right: 0;
+            width: 260px; background: rgba(8, 9, 15, 0.98); border: 1px solid rgba(0, 243, 255, 0.5);
+            border-radius: 16px; padding: 15px; color: #fff; font-size: 0.8rem;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+            animation: fadeInScale 0.3s ease-out;
         ">
             ${installInstructions}
         </div>
     </div>
     <style>
-        @keyframes pwa-pulse {
-            0% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0px rgba(0,243,255,0.4); }
-            50% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(0,243,255,0.6); }
-            100% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0px rgba(0,243,255,0.4); }
+        @keyframes fab-float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
     </style>`;
 
@@ -417,10 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const iosGuide      = document.getElementById('ios-guide');
 
     let deferredPrompt = null;
-
-    // Hover effects
-    installBtn.addEventListener('mouseenter', () => { installBtn.style.opacity = '0.85'; installBtn.style.transform = 'scale(1.03)'; });
-    installBtn.addEventListener('mouseleave', () => { installBtn.style.opacity = '1';    installBtn.style.transform = 'scale(1)'; });
 
     // ── Android / Chrome / Edge / Windows (Automatic Prompt) ─────
     window.addEventListener('beforeinstallprompt', (e) => {

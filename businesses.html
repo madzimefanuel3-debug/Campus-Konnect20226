@@ -82,11 +82,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <!-- ══ PWA ════════════════════════════════════════════════════════ -->
+    <!-- ══ PWA Support ════════════════════════════════════════════════ -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#9333ea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Konnect">
+    
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-    <link rel="apple-touch-icon" href="assets/logo.svg">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <meta name="theme-color" content="#08090f">
+    
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>

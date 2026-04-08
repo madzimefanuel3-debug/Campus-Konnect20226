@@ -20,11 +20,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="admin.css">
 
-    <!-- ══ PWA ════════════════════════════════════════════════ -->
+    <!-- ══ PWA Support ════════════════════════════════════════════════ -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#9333ea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Konnect">
+    
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-    <link rel="apple-touch-icon" href="assets/logo.svg">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <meta name="theme-color" content="#08090f">
+    
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -372,6 +378,7 @@
     </div>
 
     <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
     <script>
         // --- 0. Authorization Security Check ---
         const sysToken = localStorage.getItem('campus_konnect_token');

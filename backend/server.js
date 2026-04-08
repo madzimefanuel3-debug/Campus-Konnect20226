@@ -15,7 +15,13 @@ const PORT = process.env.PORT || 3000;
 app.use(helmet());
 
 // Security Hardening: CORS configuration
-const allowedOrigins = ['http://localhost:3000', 'https://campus-konnect-pwa.vercel.app'];
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5000',
+  'http://172.20.10.8:5000',   // Local network – mobile testing
+  'http://172.20.10.8:3000',
+  'https://campus-konnect-pwa.vercel.app'
+];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -245,10 +251,12 @@ app.post('/api/businesses/login', [
   }
 });
 
-// START SERVER
+// START SERVER — binds to 0.0.0.0 so LAN devices (phones/tablets) can connect
 if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Server is running securely on port ${PORT}`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`\n🚀  Server running on port ${PORT}`);
+    console.log(`   Local:    http://localhost:${PORT}`);
+    console.log(`   Network:  http://172.20.10.8:${PORT}  ← use this on your phone\n`);
   });
 }
 

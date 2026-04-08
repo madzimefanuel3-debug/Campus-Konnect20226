@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // =================================================================
+    // DYNAMIC API BASE — auto-resolves for localhost AND mobile (LAN)
+    // Works on the same machine (localhost) and on phones on the same Wi-Fi
+    // =================================================================
+    const LOCAL_IP   = '172.20.10.8';  // Your laptop's local network IP
+    const PORT       = 5000;
+    const API_BASE   = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+                       ? `http://localhost:${PORT}`
+                       : `http://${LOCAL_IP}:${PORT}`;
+    // Vercel / production: API calls are same-origin (no prefix needed)
+    const API = location.hostname.includes('vercel.app') ? '' : API_BASE;
+
+
     // 1. Mobile Menu Toggle
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const navbar = document.getElementById('navbar');
@@ -460,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
         async function fetchBusinesses() {
             try {
                 // Since frontend and backend are hosted on same server, we can use relative path
-                const response = await fetch('/api/businesses');
+                const response = await fetch(`${API}/api/businesses`);
                 if (response.ok) {
                     const businesses = await response.json();
                     renderFeed(businesses);
@@ -616,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 try {
-                    const res = await fetch('/api/businesses', {
+                    const res = await fetch(`${API}/api/businesses`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
@@ -659,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const res = await fetch('/api/businesses/login', {
+                const res = await fetch(`${API}/api/businesses/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -728,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerText = 'Please wait...';
             btn.disabled = true;
 
-            const endpoint = isStudentRegisterMode ? '/api/users/register' : '/api/users/login';
+            const endpoint = isStudentRegisterMode ? `${API}/api/users/register` : `${API}/api/users/login`;
             const payload = {
                 email: document.getElementById('student_email').value,
                 password: document.getElementById('student_password').value

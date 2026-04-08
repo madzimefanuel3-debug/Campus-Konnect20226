@@ -378,6 +378,14 @@
             if (sysUserRaw) sysUser = JSON.parse(sysUserRaw);
         } catch(e) {}
 
+        // Dynamic API base — works on localhost AND phone on same Wi-Fi
+        const LOCAL_IP = '172.20.10.8';
+        const API_PORT = 5000;
+        const API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+            ? `http://localhost:${API_PORT}`
+            : location.hostname.includes('vercel.app') ? ''
+            : `http://${LOCAL_IP}:${API_PORT}`;
+
         // [UNLOCKED FOR DEVELOPMENT]
         // if (!sysToken || !sysUser || sysUser.role !== 'admin') {
         //     alert("Security Breach: Strict Administrator privileges required. You are being redirected.");
@@ -462,7 +470,7 @@
                 btn.innerText = 'Publishing...';
                 
                 try {
-                    const res = await fetch('/api/admin/adverts', {
+                    const res = await fetch(`${API}/api/admin/adverts`, {
                         method: 'POST',
                         headers: authHeaders,
                         body: JSON.stringify({

@@ -1,24 +1,24 @@
 /* Base Styles & Variables */
 :root {
-    --purple-primary: #9333ea;
-    --purple-dark: #6b21a8;
-    --purple-light: #d8b4fe;
-    --orange-primary: #f97316;
-    --orange-dark: #ea580c;
-    --orange-light: #fdba74;
+    --purple-primary: #00f3ff; /* Cyan Override */
+    --purple-dark: #00b9c4;
+    --purple-light: #a4fcff;
+    --orange-primary: #ff00e5; /* Magenta Override */
+    --orange-dark: #b800a5;
+    --orange-light: #ff8df0;
     
-    --bg-dark: #0f111a;
-    --bg-darker: #07080d;
-    --bg-card: rgba(255, 255, 255, 0.03);
+    --bg-dark: #08090f;
+    --bg-darker: #030406;
+    --bg-card: rgba(0, 243, 255, 0.04);
     
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     
-    --font-heading: 'Outfit', sans-serif;
+    --font-heading: 'Rajdhani', 'Outfit', 'Courier New', monospace;
     --font-body: 'Inter', sans-serif;
     
-    --shadow-purple: 0 10px 40px -10px rgba(147, 51, 234, 0.4);
-    --shadow-orange: 0 10px 40px -10px rgba(249, 115, 22, 0.4);
+    --shadow-purple: 0 0 15px rgba(0, 243, 255, 0.5);
+    --shadow-orange: 0 0 20px rgba(255, 0, 229, 0.5);
     --transition-fast: 0.2s ease;
     --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -89,7 +89,7 @@ a {
     align-items: center;
     justify-content: center;
     padding: 12px 28px;
-    border-radius: 50px;
+    border-radius: 4px; /* Techy sharp edges */
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: 1rem;
@@ -108,7 +108,7 @@ a {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 50px -10px rgba(249, 115, 22, 0.6);
+    box-shadow: 0 15px 50px -10px rgba(255, 0, 229, 0.6);
 }
 
 .btn-secondary {
@@ -161,9 +161,19 @@ a {
 }
 
 .logo {
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.cy-logo {
+    height: 48px;
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(0,243,255,0.4));
+    transition: var(--transition-fast);
+}
+
+.cy-logo:hover {
+    filter: drop-shadow(0 0 15px rgba(255,0,229,0.7));
 }
 
 .nav-links {
@@ -629,7 +639,7 @@ a {
 .search-input {
     width: 100%;
     padding: 16px 24px 16px 52px;
-    border-radius: 50px;
+    border-radius: 4px;
     border: 1px solid rgba(255,255,255,0.15);
     background: rgba(0,0,0,0.4);
     color: white;

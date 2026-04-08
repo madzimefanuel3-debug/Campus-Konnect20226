@@ -328,10 +328,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        console.log('[PWA] Install prompt captured, showing banner.');
-        // Slide the banner up
-        setTimeout(() => { installBanner.style.bottom = '1.5rem'; }, 800);
+        console.log('[PWA] Install prompt captured, ready to install.');
     });
+
+    // Force the floating install banner to appear unconditionally after 1.5 seconds 
+    // so it always floats on the home screen as requested.
+    setTimeout(() => { 
+        if (installBanner) {
+            installBanner.style.bottom = '1.5rem'; 
+        }
+    }, 1500);
 
     // User clicks "Install"
     installBtn.addEventListener('click', async () => {
@@ -600,9 +606,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Store the JWT token securely
                     localStorage.setItem('campus_konnect_token', data.token);
                     localStorage.setItem('campus_konnect_business', JSON.stringify(data.business));
-                    alert(`Welcome to the portal, ${data.business.name}!`);
-                    // Redirect to dashboard or home
-                    window.location.href = 'index.html'; 
+                    alert(`Welcome to your private proxy, ${data.business.name}!`);
+                    
+                    // Display WhatsApp dashboard instead of redirecting
+                    loginForm.style.display = 'none';
+                    document.getElementById('business-dashboard').style.display = 'block';
+                    document.getElementById('dashboard-welcome').innerText = `Welcome, ${data.business.name}`;
                 } else {
                     const err = await res.json();
                     alert(err.error || 'Invalid credentials. Please try again.');
@@ -613,6 +622,87 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error(error);
                 alert('Network error failed to login.');
                 btn.innerText = 'Access Portal';
+                btn.disabled = false;
+            }
+        });
+    }
+
+    // =================================================================
+    // 14. Standard User Login & Registration
+    // =================================================================
+    const studentLoginForm = document.getElementById('student-login-form');
+    const toggleStudentMode = document.getElementById('toggle-student-mode');
+    const studentNameGroup = document.getElementById('student_name_group');
+    const studentModalTitle = document.getElementById('student-modal-title');
+    let isStudentRegisterMode = false;
+
+    if (toggleStudentMode) {
+        toggleStudentMode.addEventListener('click', (e) => {
+            e.preventDefault();
+            isStudentRegisterMode = !isStudentRegisterMode;
+            if (isStudentRegisterMode) {
+                studentNameGroup.style.display = 'block';
+                document.getElementById('student_name').required = true;
+                studentModalTitle.innerText = 'Student Registration';
+                document.getElementById('student-login-btn').innerText = 'Register';
+                toggleStudentMode.innerText = 'Already have an account? Log In';
+            } else {
+                studentNameGroup.style.display = 'none';
+                document.getElementById('student_name').required = false;
+                studentModalTitle.innerText = 'Student Log In';
+                document.getElementById('student-login-btn').innerText = 'Log In';
+                toggleStudentMode.innerText = 'Need an account? Register';
+            }
+        });
+    }
+
+    if (studentLoginForm) {
+        studentLoginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('student-login-btn');
+            const originalText = btn.innerText;
+            btn.innerText = 'Please wait...';
+            btn.disabled = true;
+
+            const endpoint = isStudentRegisterMode ? '/api/users/register' : '/api/users/login';
+            const payload = {
+                email: document.getElementById('student_email').value,
+                password: document.getElementById('student_password').value
+            };
+            
+            if (isStudentRegisterMode) {
+                payload.name = document.getElementById('student_name').value;
+            }
+
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (res.ok) {
+                    const data = await res.json();
+                    localStorage.setItem('campus_konnect_token', data.token);
+                    localStorage.setItem('campus_konnect_user', JSON.stringify(data.user));
+                    alert(`Success! Logged in as ${data.user.name}`);
+                    document.getElementById('user-login-modal').classList.remove('active');
+                    
+                    // Redirect to admin if admin role
+                    if (data.user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.reload();
+                    }
+                } else {
+                    const err = await res.json();
+                    alert(err.error || 'Authentication failed. Check inputs.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Network error connecting to auth server.');
+            } finally {
+                btn.innerText = originalText;
                 btn.disabled = false;
             }
         });

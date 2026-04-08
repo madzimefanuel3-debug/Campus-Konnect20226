@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // =================================================================
-    // DYNAMIC API BASE — auto-resolves for localhost AND mobile (LAN)
-    // Works on the same machine (localhost) and on phones on the same Wi-Fi
+    // SUPABASE CONFIGURATION — Migrated from Local Node.js
     // =================================================================
-    const LOCAL_IP   = '172.20.10.8';  // Your laptop's local network IP
-    const PORT       = 5000;
-    const API_BASE   = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-                       ? `http://localhost:${PORT}`
-                       : `http://${LOCAL_IP}:${PORT}`;
-    // Vercel / production: API calls are same-origin (no prefix needed)
-    const API = location.hostname.includes('vercel.app') ? '' : API_BASE;
+    // Handled by supabase-config.js
+    const API = ''; // Resetting local API prefix
+
 
 
     // =================================================================
@@ -512,14 +507,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (feedColumn && document.getElementById('feed')) {
         async function fetchBusinesses() {
             try {
-                // Since frontend and backend are hosted on same server, we can use relative path
-                const response = await fetch(`${API}/api/businesses`);
-                if (response.ok) {
-                    const businesses = await response.json();
-                    renderFeed(businesses);
-                }
+                // Supabase Migration: Fetch from 'posts' table with business details
+                const { data: posts, error } = await supabase
+                    .from('posts')
+                    .select('*, businesses(*)')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+                
+                // Map columns to match existing render logic if necessary
+                const mappedPosts = posts.map(p => ({
+                    ...p,
+                    ...p.businesses, // Flatten business details
+                    description: p.content || p.businesses.description // use post content if available
+                }));
+
+                renderFeed(mappedPosts);
             } catch (error) {
-                console.error("Failed to fetch businesses:", error);
+                console.error("Failed to fetch businesses from Supabase:", error);
             }
         }
         
@@ -669,24 +674,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 try {
-                    const res = await fetch(`${API}/api/businesses`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
+                    // Supabase Migration: Map registration to 'businesses' table
+                    const { data, error } = await supabase
+                        .from('businesses')
+                        .insert([{
+                            ...payload,
+                            status: 'pending' // Approval System: Map to status column
+                        }])
+                        .select();
 
-                    if (res.ok) {
-                        alert('Profile Created Successfully! Your business is now live on the feed.');
-                        window.location.href = 'index.html';
-                    } else {
-                        const err = await res.json();
-                        alert('Error setting up profile. Please check your inputs.');
-                        btn.innerText = 'Launch Profile';
-                        btn.disabled = false;
-                    }
+                    if (error) throw error;
+
+                    alert('Profile Created Successfully! Your business is now pending approval.');
+                    window.location.href = 'index.html';
                 } catch (error) {
-                    console.error(error);
-                    alert('Network error failed to create profile.');
+                    console.error("Supabase Error:", error);
+                    alert('Error setting up profile: ' + (error.message || 'Check connection'));
                     btn.innerText = 'Launch Profile';
                     btn.disabled = false;
                 }
@@ -712,32 +715,28 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const res = await fetch(`${API}/api/businesses/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                // Supabase Migration: Query businesses table directly (Simple Login Logic)
+                const { data, error } = await supabase
+                    .from('businesses')
+                    .select('*')
+                    .eq('email', payload.email)
+                    .eq('password', payload.password) // Note: In production use Auth.signInWithPassword
+                    .single();
 
-                if (res.ok) {
-                    const data = await res.json();
-                    // Store the JWT token securely
-                    localStorage.setItem('campus_konnect_token', data.token);
-                    localStorage.setItem('campus_konnect_business', JSON.stringify(data.business));
-                    alert(`Welcome to your private proxy, ${data.business.name}!`);
-                    
-                    // Display WhatsApp dashboard instead of redirecting
-                    loginForm.style.display = 'none';
-                    document.getElementById('business-dashboard').style.display = 'block';
-                    document.getElementById('dashboard-welcome').innerText = `Welcome, ${data.business.name}`;
-                } else {
-                    const err = await res.json();
-                    alert(err.error || 'Invalid credentials. Please try again.');
-                    btn.innerText = 'Access Portal';
-                    btn.disabled = false;
-                }
+                if (error || !data) throw new Error('Invalid email or password.');
+
+                // Store simplified session data
+                localStorage.setItem('campus_konnect_business', JSON.stringify(data));
+                localStorage.setItem('campus_konnect_token', 'supabase_managed_session');
+                
+                alert(`Welcome to your private proxy, ${data.name}!`);
+                
+                loginForm.style.display = 'none';
+                document.getElementById('business-dashboard').style.display = 'block';
+                document.getElementById('dashboard-welcome').innerText = `Welcome, ${data.name}`;
             } catch (error) {
-                console.error(error);
-                alert('Network error failed to login.');
+                console.error("Login Error:", error);
+                alert(error.message || 'Login failed.');
                 btn.innerText = 'Access Portal';
                 btn.disabled = false;
             }
@@ -792,32 +791,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const res = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                if (res.ok) {
-                    const data = await res.json();
-                    localStorage.setItem('campus_konnect_token', data.token);
-                    localStorage.setItem('campus_konnect_user', JSON.stringify(data.user));
-                    alert(`Success! Logged in as ${data.user.name}`);
-                    document.getElementById('user-login-modal').classList.remove('active');
-                    
-                    // Redirect to admin if admin role
-                    if (data.user.role === 'admin') {
-                        window.location.href = 'admin.html';
-                    } else {
-                        window.location.reload();
-                    }
+                let data, error;
+
+                if (isStudentRegisterMode) {
+                    const { data: newUser, error: regError } = await supabase
+                        .from('users')
+                        .insert([{
+                            ...payload,
+                            role: 'student'
+                        }])
+                        .select()
+                        .single();
+                    data = newUser;
+                    error = regError;
                 } else {
-                    const err = await res.json();
-                    alert(err.error || 'Authentication failed. Check inputs.');
+                    const { data: user, error: loginError } = await supabase
+                        .from('users')
+                        .select('*')
+                        .eq('email', payload.email)
+                        .eq('password', payload.password)
+                        .single();
+                    data = user;
+                    error = loginError;
                 }
-            } catch (err) {
-                console.error(err);
-                alert('Network error connecting to auth server.');
+                
+                if (error || !data) throw new Error(error?.message || 'Authentication failed.');
+
+                localStorage.setItem('campus_konnect_user', JSON.stringify(data));
+                localStorage.setItem('campus_konnect_token', 'supabase_managed_session');
+                
+                alert(`Success! Logged in as ${data.name}`);
+                document.getElementById('user-login-modal').classList.remove('active');
+                
+                if (data.role === 'admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.error("Auth Error:", error);
+                alert(error.message || 'Authentication failed.');
             } finally {
                 btn.innerText = originalText;
                 btn.disabled = false;

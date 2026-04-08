@@ -25,6 +25,8 @@
     <meta name="theme-color" content="#9333ea">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
     <link rel="apple-touch-icon" href="assets/logo.svg">
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="admin-layout">
 
@@ -369,6 +371,7 @@
         </div>
     </div>
 
+    <script src="supabase-config.js"></script>
     <script>
         // --- 0. Authorization Security Check ---
         const sysToken = localStorage.getItem('campus_konnect_token');
@@ -378,13 +381,12 @@
             if (sysUserRaw) sysUser = JSON.parse(sysUserRaw);
         } catch(e) {}
 
-        // Dynamic API base — works on localhost AND phone on same Wi-Fi
-        const LOCAL_IP = '172.20.10.8';
-        const API_PORT = 5000;
-        const API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-            ? `http://localhost:${API_PORT}`
-            : location.hostname.includes('vercel.app') ? ''
-            : `http://${LOCAL_IP}:${API_PORT}`;
+        // =================================================================
+        // SUPABASE CONFIGURATION — Migrated from Local Node.js
+        // =================================================================
+        // Handled by supabase-config.js
+        const API = ''; 
+
 
         // [UNLOCKED FOR DEVELOPMENT]
         // if (!sysToken || !sysUser || sysUser.role !== 'admin') {
@@ -410,23 +412,23 @@
             if (confirm(`Are you sure you want to hard-delete this ${type} entirely from the platform?`)) {
                 btn.innerText = '...';
                 try {
-                    const endpoint = type === 'business' ? `/api/admin/businesses/${id}` : `/api/admin/users/${id}`;
-                    const res = await fetch(endpoint, {
-                        method: 'DELETE',
-                        headers: authHeaders
-                    });
+                    // Supabase Migration: Direct table deletion
+                    const table = type === 'business' ? 'businesses' : 'users';
+                    const { error } = await supabase
+                        .from(table)
+                        .delete()
+                        .eq('id', id);
                     
-                    if (res.ok) {
+                    if (!error) {
                         const tr = btn.closest('tr');
                         tr.style.opacity = '0.5';
                         setTimeout(() => tr.remove(), 300);
                     } else {
-                        const err = await res.json();
-                        alert(`Failed: ${err.error || 'Server error'}`);
-                        btn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+                        throw error;
                     }
                 } catch (e) {
-                    alert('Network error executing deletion.');
+                    console.error("Deletion Error:", e);
+                    alert(`Failed to delete ${type}: ` + (e.message || 'Check connection'));
                     btn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ef4444" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
                 }
             }
@@ -470,25 +472,26 @@
                 btn.innerText = 'Publishing...';
                 
                 try {
-                    const res = await fetch(`${API}/api/admin/adverts`, {
-                        method: 'POST',
-                        headers: authHeaders,
-                        body: JSON.stringify({
-                             business: document.getElementById('post-business').value,
-                             caption: document.getElementById('post-caption').value
-                        })
-                    });
+                    // Supabase Migration: Map Advert to 'posts' table
+                    const { error } = await supabase
+                        .from('posts')
+                        .insert([{
+                            business_id: document.getElementById('post-business').value,
+                            content: document.getElementById('post-caption').value,
+                            status: 'approved'
+                        }]);
                     
-                    if (res.ok) {
+                    if (!error) {
                         alert('Advert successfully published to the Campus Konnect feed!');
                         document.getElementById('addPostModal').classList.remove('active');
                         e.target.reset();
                         mediaPreview.innerHTML = `<span style="color:var(--text-secondary);">Media Preview</span>`;
                     } else {
-                        alert('Failed to publish advert. Check your Admin permissions.');
+                        throw error;
                     }
                 } catch(err) {
-                    alert('Network error publishing advert.');
+                    console.error("Publish Error:", err);
+                    alert('Failed to publish advert: ' + (err.message || 'Check permissions'));
                 } finally {
                     btn.innerText = 'Publish Advert';
                 }

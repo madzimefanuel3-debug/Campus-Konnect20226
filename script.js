@@ -366,47 +366,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const installBannerHTML = `
     <div id="pwa-install-banner" style="
-        position: fixed; bottom: -160px; left: 50%; transform: translateX(-50%);
-        width: min(440px, calc(100vw - 2rem));
-        background: rgba(8,9,15,0.97);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(0,243,255,0.3);
-        border-radius: 4px;
-        padding: 1rem 1.25rem;
-        box-shadow: 0 0 30px rgba(0,243,255,0.15), 0 20px 60px rgba(0,0,0,0.7);
+        position: fixed; bottom: -80px; right: 20px;
+        background: rgba(8,9,15,0.9);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0,243,255,0.4);
+        border-radius: 50px;
+        padding: 6px 6px 6px 15px;
+        display: flex; align-items: center; gap: 12px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 15px rgba(0,243,255,0.2);
         z-index: 9999;
-        transition: bottom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: pwa-pulse 3s infinite;
     ">
-        <div style="display:flex; align-items:center; gap: 1rem;">
-            <img src="assets/logo.svg" alt="Campus Konnect"
-                 style="width:80px;height:26px;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(0,243,255,0.5));">
-            <div style="flex:1; min-width:0;">
-                <p style="margin:0;font-weight:700;font-size:0.95rem;color:#fff;font-family:'Courier New',monospace;">
-                    INSTALL CAMPUS KONNECT
-                </p>
-                <p style="margin:0;font-size:0.78rem;color:#94a3b8;margin-top:2px;" id="pwa-subtitle">
-                    ${isIOS ? 'Use Safari Share → Add to Home Screen' :
-                      isFirefox ? 'Menu → Add to Home Screen' :
-                      'Add to Home Screen for the best experience'}
-                </p>
-            </div>
-            <div style="display:flex;gap:0.5rem;flex-shrink:0;">
-                <button id="pwa-install-dismiss" style="
-                    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-                    color: #94a3b8; border-radius: 4px; padding: 0.45rem 0.8rem;
-                    font-size: 0.8rem; cursor: pointer; font-family: inherit;">Later</button>
-                <button id="pwa-install-btn" style="
-                    background: linear-gradient(135deg, #00f3ff, #00b9c4);
-                    border: none; color: #000; border-radius: 4px;
-                    padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 700;
-                    cursor: pointer; font-family: 'Courier New',monospace;
-                    box-shadow: 0 0 12px rgba(0,243,255,0.4);
-                    transition: opacity 0.2s, transform 0.2s;">${installBtnLabel}</button>
-            </div>
+        <div style="display:flex; align-items:center; gap: 8px; cursor: pointer;" id="pwa-install-btn">
+            <img src="assets/logo.svg" alt="" style="width:20px; height:20px; filter:drop-shadow(0 0 4px #00f3ff);">
+            <span style="color: #fff; font-size: 0.8rem; font-weight: 700; font-family: 'Inter', sans-serif; white-space: nowrap;">
+                Install App
+            </span>
         </div>
-        ${installInstructions}
-    </div>`;
+        <button id="pwa-install-dismiss" style="
+            width: 28px; height: 28px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: none;
+            color: #fff; font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        ">✕</button>
+        
+        <!-- Tooltip Instructions for iOS/Firefox -->
+        <div id="ios-guide" style="
+            display: none; position: absolute; bottom: 60px; right: 0;
+            width: 240px; background: rgba(8,9,15,0.98); border: 1px solid #00f3ff;
+            border-radius: 12px; padding: 12px; color: #fff; font-size: 0.75rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        ">
+            ${installInstructions}
+        </div>
+    </div>
+    <style>
+        @keyframes pwa-pulse {
+            0% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0px rgba(0,243,255,0.4); }
+            50% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(0,243,255,0.6); }
+            100% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0px rgba(0,243,255,0.4); }
+        }
+    </style>`;
 
     document.body.insertAdjacentHTML('beforeend', installBannerHTML);
     const installBanner = document.getElementById('pwa-install-banner');
@@ -425,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         deferredPrompt = e;
         console.log('[PWA] beforeinstallprompt captured. OS supports auto-install.');
-        setTimeout(() => { installBanner.style.bottom = '1.5rem'; }, 1200);
+        setTimeout(() => { installBanner.style.bottom = '20px'; }, 1200);
     });
 
     // ── Fallback: Show banner for iOS / Firefox / other platforms ─
@@ -434,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('beforeinstallprompt', () => { autoPromptFired = true; });
     setTimeout(() => {
         if (!autoPromptFired && !isInStandalone) {
-            installBanner.style.bottom = '1.5rem';
+            installBanner.style.bottom = '20px';
         }
     }, 2000);
 
@@ -445,12 +447,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (iosGuide) {
                 const visible = iosGuide.style.display === 'block';
                 iosGuide.style.display = visible ? 'none' : 'block';
-                installBanner.style.bottom = visible ? '1.5rem' : '1.5rem';
+                installBanner.style.bottom = '20px';
             }
             return;
         }
         if (!deferredPrompt) return;
-        installBanner.style.bottom = '-160px';
+        installBanner.style.bottom = '-100px';
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         console.log('[PWA] Install outcome:', outcome);
@@ -459,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Dismiss button ────────────────────────────────────────────
     dismissBtn.addEventListener('click', () => {
-        installBanner.style.bottom = '-160px';
+        installBanner.style.bottom = '-100px';
         deferredPrompt = null;
         // Suppress for the rest of this session
         sessionStorage.setItem('pwa_dismissed', '1');
@@ -473,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Already installed – hide ──────────────────────────────────
     window.addEventListener('appinstalled', () => {
         console.log('[PWA] Campus Konnect installed! 🎉');
-        installBanner.style.bottom = '-160px';
+        installBanner.style.bottom = '-100px';
         deferredPrompt = null;
     });
 

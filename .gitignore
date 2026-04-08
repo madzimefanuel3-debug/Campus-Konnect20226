@@ -7,5 +7,5 @@ dist/
 build/
 .next/
 .vercel
-/backend/node_modules/
-/backend/.env
+/api/node_modules/
+/api/.env

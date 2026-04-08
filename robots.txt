@@ -6,7 +6,7 @@ Allow: /
 
 # Block crawlers from private/admin areas
 Disallow: /admin.html
-Disallow: /backend/
+Disallow: /api/
 Disallow: /offline.html
 
 # Block common nuisance crawlers that ignore standard rules

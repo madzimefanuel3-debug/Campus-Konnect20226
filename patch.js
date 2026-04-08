@@ -1,4 +1,4 @@
-const db = require('./backend/db');
+const db = require('./api/db');
 const bcrypt = require('bcrypt');
 
 async function run() {

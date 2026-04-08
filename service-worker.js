@@ -18,14 +18,10 @@ const STATIC_ASSETS = [
   '/admin.css',
   '/script.js',
   '/manifest.json',
-  '/icon-72.png',
-  '/icon-96.png',
-  '/icon-128.png',
-  '/icon-144.png',
-  '/icon-152.png',
-  '/icon-192.png',
-  '/icon-384.png',
-  '/icon-512.png',
+  '/assets/icon.svg',
+  '/assets/logo.svg',
+  '/assets/icon-192.png',
+  '/assets/icon-512.png',
   '/offline.html'
 ];
 
@@ -152,8 +148,8 @@ self.addEventListener('push', event => {
   const title = data.title || 'Campus Konnect';
   const options = {
     body: data.body || 'New activity on Campus Konnect!',
-    icon: '/icon-192.png',
-    badge: '/icon-96.png',
+    icon: '/assets/icon-192.png',
+    badge: '/assets/icon-96.png',
     vibrate: [200, 100, 200],
     data: { url: data.url || '/' }
   };

@@ -271,122 +271,170 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', initParticles);
 
     // =================================================================
-    // 9. PWA – SERVICE WORKER + INSTALL PROMPT
+    // 9. PWA – CROSS-PLATFORM INSTALL PROMPT (Android, iOS, Windows, macOS)
     // =================================================================
 
-    // ── Inject the install banner HTML ──────────────────────────────
+    // ── Detect OS / Browser ────────────────────────────────────────
+    const ua = navigator.userAgent;
+    const isIOS        = /iphone|ipad|ipod/i.test(ua);
+    const isMacOS      = /Macintosh/i.test(ua) && !isIOS;
+    const isAndroid    = /android/i.test(ua);
+    const isWindows    = /windows/i.test(ua);
+    const isInStandalone = window.matchMedia('(display-mode: standalone)').matches
+                        || window.navigator.standalone === true;
+    const isSamsungBrowser = /SamsungBrowser/i.test(ua);
+    const isFirefox    = /firefox/i.test(ua);
+
+    // Don't show if already installed as PWA
+    if (isInStandalone) return;
+
+    // ── Build the install banner HTML ─────────────────────────────
+    let installInstructions = '';
+    let installBtnLabel     = 'Install';
+    let showManualGuide     = false;
+
+    if (isIOS) {
+        showManualGuide = true;
+        installBtnLabel = 'How to Install';
+        installInstructions = `
+            <div id="ios-guide" style="display:none; margin-top:1rem; background:rgba(0,243,255,0.05);
+                border:1px solid rgba(0,243,255,0.2); border-radius:4px; padding:0.75rem; font-size:0.8rem; color:#94a3b8;">
+                <strong style="color:#00f3ff;">iOS Instructions:</strong><br>
+                1. Tap the <strong>Share</strong> button (📤) at the bottom of Safari<br>
+                2. Scroll down and tap <strong>"Add to Home Screen"</strong><br>
+                3. Tap <strong>"Add"</strong> to confirm
+            </div>`;
+    } else if (isFirefox) {
+        showManualGuide = true;
+        installBtnLabel = 'How to Install';
+        installInstructions = `
+            <div id="ios-guide" style="display:none; margin-top:1rem; background:rgba(0,243,255,0.05);
+                border:1px solid rgba(0,243,255,0.2); border-radius:4px; padding:0.75rem; font-size:0.8rem; color:#94a3b8;">
+                <strong style="color:#00f3ff;">Firefox Instructions:</strong><br>
+                1. Tap the <strong>⋮ Menu</strong> in the top-right<br>
+                2. Select <strong>"Install"</strong> or <strong>"Add to Home Screen"</strong>
+            </div>`;
+    }
+
     const installBannerHTML = `
     <div id="pwa-install-banner" style="
-        position: fixed; bottom: -120px; left: 50%; transform: translateX(-50%);
-        width: min(420px, calc(100vw - 2rem));
-        background: rgba(15,17,26,0.92);
+        position: fixed; bottom: -160px; left: 50%; transform: translateX(-50%);
+        width: min(440px, calc(100vw - 2rem));
+        background: rgba(8,9,15,0.97);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(147,51,234,0.35);
-        border-radius: 20px;
+        border: 1px solid rgba(0,243,255,0.3);
+        border-radius: 4px;
         padding: 1rem 1.25rem;
-        display: flex; align-items: center; gap: 1rem;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(147,51,234,0.1);
+        box-shadow: 0 0 30px rgba(0,243,255,0.15), 0 20px 60px rgba(0,0,0,0.7);
         z-index: 9999;
         transition: bottom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     ">
-        <img src="assets/logo.svg" alt="Campus Konnect" style="width:70px;height:24px;border-radius:4px;flex-shrink:0;background:rgba(0,243,255,0.05);padding:4px;border:1px solid rgba(0,243,255,0.2);">
-        <div style="flex:1; min-width:0;">
-            <p style="margin:0;font-weight:700;font-size:0.95rem;color:#fff;">Install Campus Konnect</p>
-            <p style="margin:0;font-size:0.8rem;color:#94a3b8;margin-top:2px;">Add to Home Screen for the best experience</p>
+        <div style="display:flex; align-items:center; gap: 1rem;">
+            <img src="assets/logo.svg" alt="Campus Konnect"
+                 style="width:80px;height:26px;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(0,243,255,0.5));">
+            <div style="flex:1; min-width:0;">
+                <p style="margin:0;font-weight:700;font-size:0.95rem;color:#fff;font-family:'Courier New',monospace;">
+                    INSTALL CAMPUS KONNECT
+                </p>
+                <p style="margin:0;font-size:0.78rem;color:#94a3b8;margin-top:2px;" id="pwa-subtitle">
+                    ${isIOS ? 'Use Safari Share → Add to Home Screen' :
+                      isFirefox ? 'Menu → Add to Home Screen' :
+                      'Add to Home Screen for the best experience'}
+                </p>
+            </div>
+            <div style="display:flex;gap:0.5rem;flex-shrink:0;">
+                <button id="pwa-install-dismiss" style="
+                    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+                    color: #94a3b8; border-radius: 4px; padding: 0.45rem 0.8rem;
+                    font-size: 0.8rem; cursor: pointer; font-family: inherit;">Later</button>
+                <button id="pwa-install-btn" style="
+                    background: linear-gradient(135deg, #00f3ff, #00b9c4);
+                    border: none; color: #000; border-radius: 4px;
+                    padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 700;
+                    cursor: pointer; font-family: 'Courier New',monospace;
+                    box-shadow: 0 0 12px rgba(0,243,255,0.4);
+                    transition: opacity 0.2s, transform 0.2s;">${installBtnLabel}</button>
+            </div>
         </div>
-        <div style="display:flex;gap:0.5rem;flex-shrink:0;">
-            <button id="pwa-install-dismiss" style="
-                background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-                color: #94a3b8; border-radius: 10px; padding: 0.45rem 0.8rem;
-                font-size: 0.8rem; cursor: pointer; font-family: inherit;
-                transition: background 0.2s;
-            ">Later</button>
-            <button id="pwa-install-btn" style="
-                background: linear-gradient(135deg, #00f3ff, #ff00e5);
-                border: none; color: black; border-radius: 4px;
-                padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 800;
-                cursor: pointer; font-family: inherit;
-                box-shadow: 0 0 10px rgba(0,243,255,0.5);
-                transition: opacity 0.2s, transform 0.2s;
-                text-transform: uppercase;
-            ">Install</button>
-        </div>
+        ${installInstructions}
     </div>`;
 
     document.body.insertAdjacentHTML('beforeend', installBannerHTML);
     const installBanner = document.getElementById('pwa-install-banner');
     const installBtn    = document.getElementById('pwa-install-btn');
     const dismissBtn    = document.getElementById('pwa-install-dismiss');
+    const iosGuide      = document.getElementById('ios-guide');
 
     let deferredPrompt = null;
 
-    // Hover effect on Install button
-    installBtn.addEventListener('mouseenter', () => { installBtn.style.opacity = '0.9'; installBtn.style.transform = 'scale(1.02)'; });
-    installBtn.addEventListener('mouseleave', () => { installBtn.style.opacity = '1';   installBtn.style.transform = 'scale(1)'; });
+    // Hover effects
+    installBtn.addEventListener('mouseenter', () => { installBtn.style.opacity = '0.85'; installBtn.style.transform = 'scale(1.03)'; });
+    installBtn.addEventListener('mouseleave', () => { installBtn.style.opacity = '1';    installBtn.style.transform = 'scale(1)'; });
 
-    // Capture the install prompt (fired by browser when app is installable)
+    // ── Android / Chrome / Edge / Windows (Automatic Prompt) ─────
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        console.log('[PWA] Install prompt captured, ready to install.');
+        console.log('[PWA] beforeinstallprompt captured. OS supports auto-install.');
+        setTimeout(() => { installBanner.style.bottom = '1.5rem'; }, 1200);
     });
 
-    // Force the floating install banner to appear unconditionally after 1.5 seconds 
-    // so it always floats on the home screen as requested.
-    setTimeout(() => { 
-        if (installBanner) {
-            installBanner.style.bottom = '1.5rem'; 
+    // ── Fallback: Show banner for iOS / Firefox / other platforms ─
+    // Only show if beforeinstallprompt never fires (non-Chrome)
+    let autoPromptFired = false;
+    window.addEventListener('beforeinstallprompt', () => { autoPromptFired = true; });
+    setTimeout(() => {
+        if (!autoPromptFired && !isInStandalone) {
+            installBanner.style.bottom = '1.5rem';
         }
-    }, 1500);
+    }, 2000);
 
-    // User clicks "Install"
+    // ── Install button handler ────────────────────────────────────
     installBtn.addEventListener('click', async () => {
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-        
-        installBanner.style.bottom = '-120px';
-
-        if (isIOS || (isSafari && !deferredPrompt)) {
-            alert("To install Campus Konnect on iOS/Safari:\n\n1. Tap the Share icon (square with upward arrow) at the bottom.\n2. Scroll down and tap 'Add to Home Screen' (⊞).");
+        if (showManualGuide) {
+            // iOS / Firefox: toggle instructions panel
+            if (iosGuide) {
+                const visible = iosGuide.style.display === 'block';
+                iosGuide.style.display = visible ? 'none' : 'block';
+                installBanner.style.bottom = visible ? '1.5rem' : '1.5rem';
+            }
             return;
         }
-
-        if (!deferredPrompt) {
-            alert("To install Campus Konnect, please use your browser menu (⋮) and select 'Add to Home Screen' or 'Install App'.");
-            return;
-        }
-
+        if (!deferredPrompt) return;
+        installBanner.style.bottom = '-160px';
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         console.log('[PWA] Install outcome:', outcome);
         deferredPrompt = null;
-        if (outcome === 'accepted') {
-            console.log('[PWA] User accepted installation 🎉');
-        }
     });
 
-    // User clicks "Later"
+    // ── Dismiss button ────────────────────────────────────────────
     dismissBtn.addEventListener('click', () => {
-        installBanner.style.bottom = '-120px';
-        // Don't prompt again this session
+        installBanner.style.bottom = '-160px';
         deferredPrompt = null;
+        // Suppress for the rest of this session
+        sessionStorage.setItem('pwa_dismissed', '1');
     });
 
-    // Already installed – hide the banner
+    // Don't re-show if user already dismissed this session
+    if (sessionStorage.getItem('pwa_dismissed')) {
+        installBanner.remove();
+    }
+
+    // ── Already installed – hide ──────────────────────────────────
     window.addEventListener('appinstalled', () => {
-        console.log('[PWA] Campus Konnect was installed!');
-        installBanner.style.bottom = '-120px';
+        console.log('[PWA] Campus Konnect installed! 🎉');
+        installBanner.style.bottom = '-160px';
         deferredPrompt = null;
     });
 
-    // ── Register Service Worker ─────────────────────────────────────
+    // ── Register Service Worker ────────────────────────────────────
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js')
                 .then(reg => {
                     console.log('[SW] Registered ✅', reg.scope);
-                    // Handle updates gracefully
                     reg.addEventListener('updatefound', () => {
                         const newWorker = reg.installing;
                         newWorker.addEventListener('statechange', () => {
@@ -399,6 +447,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(err => console.error('[SW] Registration failed:', err));
         });
     }
+
+
 
     // =================================================================
     // 10. BACKEND INTEGRATION (Live API connection)

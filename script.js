@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         z-index: 9999;
         transition: bottom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     ">
-        <img src="icon-192.png" alt="Konnect" style="width:52px;height:52px;border-radius:12px;flex-shrink:0;">
+        <img src="assets/logo.svg" alt="Campus Konnect" style="width:70px;height:24px;border-radius:4px;flex-shrink:0;background:rgba(0,243,255,0.05);padding:4px;border:1px solid rgba(0,243,255,0.2);">
         <div style="flex:1; min-width:0;">
             <p style="margin:0;font-weight:700;font-size:0.95rem;color:#fff;">Install Campus Konnect</p>
             <p style="margin:0;font-size:0.8rem;color:#94a3b8;margin-top:2px;">Add to Home Screen for the best experience</p>

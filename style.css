@@ -1164,6 +1164,48 @@ a {
     .pricing-grid {
         grid-template-columns: 1fr;
     }
+
+    /* CRITICAL MOBILE FIXES */
+    /* 1. Banner Scaling - fit width without changing aspect */
+    .post-media, .biz-banner {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 180px;
+    }
+    .post-media img, .post-media video {
+        width: 100% !important;
+        height: auto !important;
+        display: block;
+    }
+
+    /* 2. Footer Fix - standard flow, prevent jumping */
+    .footer {
+        position: relative !important;
+        bottom: auto !important;
+        margin-top: 4rem !important;
+        display: block !important;
+        clear: both !important;
+    }
+
+    /* 3. FAB Forced Restoration & Glassmorphism */
+    #pwa-install-banner {
+        display: flex !important;
+        visibility: visible !important;
+        z-index: 99999 !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+
+    /* 4. Navigation & Touch Targets */
+    .nav-links a {
+        padding: 15px 20px !important;
+        font-size: 1.1rem !important;
+    }
+    .btn, .action-btn, .filter-btn, .mobile-menu-toggle, .nav-links a {
+        min-height: 44px;
+        min-width: 44px;
+    }
 }
 
 /* --- Business Page Styles --- */

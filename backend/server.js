@@ -253,10 +253,9 @@ app.post('/api/businesses/login', [
 
 // START SERVER — binds to 0.0.0.0 so LAN devices (phones/tablets) can connect
 if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`\n🚀  Server running on port ${PORT}`);
-    console.log(`   Local:    http://localhost:${PORT}`);
-    console.log(`   Network:  http://172.20.10.8:${PORT}  ← use this on your phone\n`);
+  app.listen(5000, '0.0.0.0', () => {
+    console.log('SERVER_READY_ON_PORT_5000');
+    console.log(`\n🚀  Network URL: http://172.20.10.8:5000\n`);
   });
 }
 

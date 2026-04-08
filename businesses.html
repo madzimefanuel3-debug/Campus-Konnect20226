@@ -493,18 +493,18 @@
                     <h2>Business <span class="purple-text">Portal</span></h2>
                     <p style="color: var(--text-secondary); margin-bottom: 2rem;">Exclusive access for managing your campus business profile and marketing metrics.</p>
                 </div>
-                <form class="login-form">
+                <form class="login-form" id="login-form">
                     <div class="form-group">
-                        <label>Business Email</label>
-                        <input type="email" placeholder="ceo@nanotech.com" required>
+                        <label for="login_email">Business Email</label>
+                        <input type="email" id="login_email" placeholder="ceo@nanotech.com" required>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="••••••••" required>
+                        <label for="login_password">Password</label>
+                        <input type="password" id="login_password" placeholder="••••••••" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Access Portal</button>
                     <div class="text-center" style="margin-top: 1rem;">
-                        <a href="#pricing" style="color: var(--text-secondary); font-size: 0.875rem;">Not registered? View Subscription Options</a>
+                        <a href="create-profile.html" style="color: var(--text-secondary); font-size: 0.875rem;">Not registered? Create a profile</a>
                     </div>
                 </form>
             </div>

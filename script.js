@@ -537,6 +537,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const payload = {
                     name: document.getElementById('business_name').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
                     category: document.getElementById('category').value,
                     description: document.getElementById('description').value,
                     contact_phone: document.getElementById('contact_phone').value,
@@ -567,5 +569,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+    }
+
+    // =================================================================
+    // 13. Business Portal Login Submission
+    // =================================================================
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = loginForm.querySelector('button[type="submit"]');
+            btn.innerText = 'Authenticating...';
+            btn.disabled = true;
+
+            const payload = {
+                email: document.getElementById('login_email').value,
+                password: document.getElementById('login_password').value
+            };
+
+            try {
+                const res = await fetch('/api/businesses/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    // Store the JWT token securely
+                    localStorage.setItem('campus_konnect_token', data.token);
+                    localStorage.setItem('campus_konnect_business', JSON.stringify(data.business));
+                    alert(`Welcome to the portal, ${data.business.name}!`);
+                    // Redirect to dashboard or home
+                    window.location.href = 'index.html'; 
+                } else {
+                    const err = await res.json();
+                    alert(err.error || 'Invalid credentials. Please try again.');
+                    btn.innerText = 'Access Portal';
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Network error failed to login.');
+                btn.innerText = 'Access Portal';
+                btn.disabled = false;
+            }
+        });
     }
 });

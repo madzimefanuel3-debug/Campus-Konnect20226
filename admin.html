@@ -384,7 +384,7 @@
         // =================================================================
         // SUPABASE CONFIGURATION — Migrated from Local Node.js
         // =================================================================
-        // Handled by supabase-config.js
+        // Handled by supabaseClient-config.js
         const API = ''; 
 
 
@@ -414,7 +414,7 @@
                 try {
                     // Supabase Migration: Direct table deletion
                     const table = type === 'business' ? 'businesses' : 'users';
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from(table)
                         .delete()
                         .eq('id', id);
@@ -473,12 +473,12 @@
                 
                 try {
                     // Supabase Migration: Map Advert to 'posts' table
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from('posts')
                         .insert([{
                             business_id: document.getElementById('post-business').value,
                             content: document.getElementById('post-caption').value,
-                            status: 'approved'
+                            is_approved: true
                         }]);
                     
                     if (!error) {

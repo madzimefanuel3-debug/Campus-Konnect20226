@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =================================================================
     // SUPABASE CONFIGURATION — Migrated from Local Node.js
     // =================================================================
-    // Handled by supabase-config.js
+    // Handled by supabaseClient-config.js
     const API = ''; // Resetting local API prefix
 
 
@@ -508,9 +508,10 @@ document.addEventListener('DOMContentLoaded', () => {
         async function fetchBusinesses() {
             try {
                 // Supabase Migration: Fetch from 'posts' table with business details
-                const { data: posts, error } = await supabase
+                const { data: posts, error } = await supabaseClient
                     .from('posts')
                     .select('*, businesses(*)')
+                    .eq('is_approved', true) 
                     .order('created_at', { ascending: false });
 
                 if (error) throw error;
@@ -675,11 +676,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 try {
                     // Supabase Migration: Map registration to 'businesses' table
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('businesses')
                         .insert([{
                             ...payload,
-                            status: 'pending' // Approval System: Map to status column
+                            is_approved: false // Approval System: Map to is_approved boolean
                         }])
                         .select();
 
@@ -716,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Supabase Migration: Query businesses table directly (Simple Login Logic)
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('businesses')
                     .select('*')
                     .eq('email', payload.email)
@@ -727,7 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Store simplified session data
                 localStorage.setItem('campus_konnect_business', JSON.stringify(data));
-                localStorage.setItem('campus_konnect_token', 'supabase_managed_session');
+                localStorage.setItem('campus_konnect_token', 'supabaseClient_managed_session');
                 
                 alert(`Welcome to your private proxy, ${data.name}!`);
                 
@@ -794,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let data, error;
 
                 if (isStudentRegisterMode) {
-                    const { data: newUser, error: regError } = await supabase
+                    const { data: newUser, error: regError } = await supabaseClient
                         .from('users')
                         .insert([{
                             ...payload,
@@ -805,7 +806,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     data = newUser;
                     error = regError;
                 } else {
-                    const { data: user, error: loginError } = await supabase
+                    const { data: user, error: loginError } = await supabaseClient
                         .from('users')
                         .select('*')
                         .eq('email', payload.email)
@@ -818,7 +819,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (error || !data) throw new Error(error?.message || 'Authentication failed.');
 
                 localStorage.setItem('campus_konnect_user', JSON.stringify(data));
-                localStorage.setItem('campus_konnect_token', 'supabase_managed_session');
+                localStorage.setItem('campus_konnect_token', 'supabaseClient_managed_session');
                 
                 alert(`Success! Logged in as ${data.name}`);
                 document.getElementById('user-login-modal').classList.remove('active');

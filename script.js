@@ -303,12 +303,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 transition: background 0.2s;
             ">Later</button>
             <button id="pwa-install-btn" style="
-                background: linear-gradient(135deg, #9333ea, #f97316);
-                border: none; color: white; border-radius: 10px;
-                padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 600;
+                background: linear-gradient(135deg, #00f3ff, #ff00e5);
+                border: none; color: black; border-radius: 4px;
+                padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 800;
                 cursor: pointer; font-family: inherit;
-                box-shadow: 0 4px 15px rgba(147,51,234,0.4);
+                box-shadow: 0 0 10px rgba(0,243,255,0.5);
                 transition: opacity 0.2s, transform 0.2s;
+                text-transform: uppercase;
             ">Install</button>
         </div>
     </div>`;
@@ -341,8 +342,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // User clicks "Install"
     installBtn.addEventListener('click', async () => {
-        if (!deferredPrompt) return;
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+        
         installBanner.style.bottom = '-120px';
+
+        if (isIOS || (isSafari && !deferredPrompt)) {
+            alert("To install Campus Konnect on iOS/Safari:\n\n1. Tap the Share icon (square with upward arrow) at the bottom.\n2. Scroll down and tap 'Add to Home Screen' (⊞).");
+            return;
+        }
+
+        if (!deferredPrompt) {
+            alert("To install Campus Konnect, please use your browser menu (⋮) and select 'Add to Home Screen' or 'Install App'.");
+            return;
+        }
+
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         console.log('[PWA] Install outcome:', outcome);

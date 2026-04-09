@@ -843,3 +843,66 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+    // =================================================================
+    // MOBILE SYNC: Search & Infinite Scroll
+    // =================================================================
+    const mobileSearchInput = document.getElementById('mobile-global-search');
+    if (mobileSearchInput) {
+        mobileSearchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const posts = document.querySelectorAll('.feed-post, .biz-card');
+            posts.forEach(post => {
+                const text = post.innerText.toLowerCase();
+                post.style.display = text.includes(query) ? '' : 'none';
+            });
+        });
+    }
+
+    // Infinite Scroll Implementation (Zero-Break Protocol)
+    let isFetchingBatch = false;
+    const handleInfiniteScroll = () => {
+        if (isFetchingBatch) return;
+        const scrollBottom = window.innerHeight + window.pageYOffset;
+        const threshold = document.documentElement.scrollHeight - 600;
+
+        if (scrollBottom >= threshold) {
+            fetchNextBatch();
+        }
+    };
+
+    async function fetchNextBatch() {
+        isFetchingBatch = true;
+        const feedContainer = document.getElementById('feed');
+        if (!feedContainer) return;
+
+        // Show loading indicator
+        const loader = document.createElement('div');
+        loader.className = 'batch-loader';
+        loader.innerHTML = '<div class="skeleton" style="height: 200px; border-radius: 12px; margin: 20px 0;"></div>';
+        feedContainer.appendChild(loader);
+
+        // Simulation of Supabase pagination logic
+        setTimeout(() => {
+            const originalPost = document.querySelector('.feed-post');
+            if (originalPost) {
+                const clone = originalPost.cloneNode(true);
+                feedContainer.appendChild(clone);
+            }
+            loader.remove();
+            isFetchingBatch = false;
+        }, 1200);
+    }
+
+    window.addEventListener('scroll', handleInfiniteScroll, { passive: true });
+
+    // Touch Event Optimization
+    document.querySelectorAll('.btn, .icon-btn-mobile, .gate-btn').forEach(button => {
+        button.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.96)';
+            this.style.transition = '0.1s';
+        }, { passive: true });
+        button.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        }, { passive: true });
+    });

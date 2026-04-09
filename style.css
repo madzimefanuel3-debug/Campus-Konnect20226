@@ -1792,10 +1792,84 @@ a {
 
 @media (max-width: 768px) {
     .navbar { display: none !important; }
-    .hero { display: none !important; }
+    .hero { 
+        display: flex !important; 
+        min-height: 40vh !important;
+        padding-top: 180px !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+    .bold-headline { font-size: 2.2rem !important; margin-bottom: 0.5rem !important; }
+    .hero-cta { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
     .feed-header { display: none !important; }
     .footer-grid { display: none !important; }
 }
 
 /* Perfect Execution - Remove Annotations and Defects */
 .reveal { opacity: 1 !important; transform: none !important; }
+
+/* ── Mobile Sync & Feature Parity Styles ─────────────────────────── */
+.header-top-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.app-title-mobile {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.icon-btn-mobile {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+}
+
+.mobile-search-bar {
+    width: 92%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.mobile-search-bar input {
+    background: none;
+    border: none;
+    color: white;
+    width: 100%;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.teal-text { color: var(--teal-primary); }
+
+/* Lazy Loading Animations */
+.skeleton {
+    background: linear-gradient(90deg, #111 25%, #222 50%, #111 75%);
+    background-size: 200% 100%;
+    animation: loading-pulse 1.5s infinite;
+}
+
+@keyframes loading-pulse {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Touch Parity */
+button, a {
+    touch-action: manipulation;
+}

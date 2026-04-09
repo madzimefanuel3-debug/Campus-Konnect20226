@@ -111,34 +111,57 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="feed-body">
-    <!-- Dynamic Background Orbs -->
-    <div class="feed-bg">
-        <div class="glow-orb purple-orb" style="top: 10%; left: 20%; animation: float 10s infinite alternate;"></div>
-        <div class="glow-orb orange-orb" style="top: 50%; right: 10%; animation: float 15s infinite alternate-reverse;"></div>
-        <div class="glow-orb purple-orb" style="bottom: 0%; left: 40%; width: 500px; height: 500px; opacity: 0.3;"></div>
-    </div>
+    <!-- Geometric Network Pattern -->
+    <div class="network-overlay"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="index.html"><img src="assets/logo.svg" alt="Campus Konnect Logo" class="cy-logo"></a>
-            </div>
-            <div class="nav-links" id="nav-links">
-                <a href="index.html" class="active">Feed</a>
-                <a href="businesses.html">Business Zone</a>
-                <a href="businesses.html#zone">Business Profile</a>
-                <a href="businesses.html#pricing">Pricing</a>
-                <button class="btn btn-secondary btn-sm" onclick="document.getElementById('user-login-modal').classList.add('active')" style="margin-left: 1rem; padding: 0.8rem 1.2rem; min-height: 44px; min-width: 44px;">Log In</button>
-            </div>
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span><span></span><span></span>
+    <!-- ── Compact Mobile Header ───────────────────────────────────── -->
+    <header class="mobile-header">
+        <div class="logo-centered">
+            <img src="assets/logo.svg" alt="Campus Konnect" class="premium-logo">
+        </div>
+        
+        <!-- Streamlined Interactions Row -->
+        <div class="interaction-row">
+            <div class="social-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 4.2k</div>
+            <div class="social-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg> 892</div>
+            <div class="social-icons-group">
+                <img src="assets/icon-72.png" alt="WA" class="mini-icon">
+                <img src="assets/icon-72.png" alt="FB" class="mini-icon" style="filter: hue-rotate(200deg);">
+                <img src="assets/icon-72.png" alt="IG" class="mini-icon" style="filter: hue-rotate(300deg);">
             </div>
         </div>
+
+        <!-- Business Zone Gateway -->
+        <div class="business-zone-gate">
+            <a href="businesses.html" class="gate-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                ACCESS BUSINESS ZONE
+            </a>
+        </div>
+    </header>
+
+    <!-- Fixed Footer Menu -->
+    <nav class="mobile-footer">
+        <a href="index.html" class="footer-nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Adverts</span>
+        </a>
+        <a href="businesses.html" class="footer-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Inbox</span>
+        </a>
+        <a href="admin.html" class="footer-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Profile</span>
+        </a>
+        <a href="#" class="footer-nav-item" onclick="alert('Settings coming soon')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Settings</span>
+        </a>
     </nav>
 
     <!-- Main Feed -->
-    <main class="feed-main section-padding" style="padding-top: 120px;" id="feed">
+    <main class="feed-main" style="padding: 180px 15px 100px 15px;" id="feed">
         <div class="feed-header text-center mb-5 reveal fade-up">
             <h1 class="bold-headline" style="font-size: clamp(2.5rem, 5vw, 4rem);">The <span class="gradient-text">Feed</span></h1>
             <p class="section-subtitle mx-auto">Discover the hottest student businesses, food spots, and services near your campus.</p>

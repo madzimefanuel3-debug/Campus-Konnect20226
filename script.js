@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const installBannerHTML = `
     <div id="pwa-install-banner" style="
-        position: fixed; bottom: -100px; right: 20px;
+        position: fixed; bottom: -120px; right: 20px;
         z-index: 9999;
         display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
         transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         deferredPrompt = e;
         console.log('[PWA] beforeinstallprompt captured. OS supports auto-install.');
-        setTimeout(() => { installBanner.style.bottom = '20px'; }, 1200);
+        setTimeout(() => { installBanner.style.bottom = '90px'; }, 1200);
     });
 
     // ── Fallback: Show banner for iOS / Firefox / other platforms ─
@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (iosGuide) {
                 const visible = iosGuide.style.display === 'block';
                 iosGuide.style.display = visible ? 'none' : 'block';
-                installBanner.style.bottom = '20px';
+                installBanner.style.bottom = '90px';
             }
             return;
         }

@@ -96,165 +96,89 @@
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="index.html"><img src="assets/logo.svg" alt="Campus Konnect Logo" class="cy-logo"></a>
-            </div>
-            <div class="nav-links" id="nav-links">
-                <a href="index.html">Feed</a>
-                <a href="businesses.html" class="active">Business Zone</a>
-                <a href="businesses.html#zone">Business Profile</a>
-                <a href="businesses.html#pricing">Pricing</a>
-            </div>
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+<body class="feed-body">
+    <div class="network-overlay"></div>
 
-    <!-- Business Hero Section -->
-    <header class="hero business-hero" id="home">
-        <div class="glow-orb purple-orb" style="top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 300px; filter: blur(150px);"></div>
-        <div class="container hero-content">
-            <div class="badge-tag reveal fade-up">For Campus Businesses</div>
-            <h1 class="bold-headline reveal fade-up delay-1">Amplify Your <span class="gradient-text">Reach</span></h1>
-            <p class="subheading reveal fade-up delay-2">Marketing. Hosting. Advertising. Built for everyone to scale their student ventures.</p>
-            <div class="core-values reveal fade-up delay-3">
-                <span>Transparency</span> • <span>Popularity</span> • <span>For Everyone</span>
-            </div>
-            <div class="hero-cta reveal fade-up delay-3" style="margin-top: 2rem;">
-                <a href="#zone" class="btn btn-primary btn-large">Explore The Zone</a>
-                <a href="#pricing" class="btn btn-secondary btn-large">View Pricing</a>
-            </div>
+    <!-- ── Secondary Screen Header ─────────────────────────────────── -->
+    <header class="mobile-header">
+        <div class="logo-centered" style="margin-bottom: 5px;">
+            <h2 style="font-size: 1.2rem; letter-spacing: 2px; color: var(--teal-primary);">BUSINESS ZONE</h2>
+        </div>
+        <div class="interaction-row" style="padding: 5px 0;">
+             <p style="font-size: 0.75rem; color: var(--text-secondary);">Marketplace & Network Hub</p>
         </div>
     </header>
 
+    <!-- Fixed Footer Menu -->
+    <nav class="mobile-footer">
+        <a href="index.html" class="footer-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Adverts</span>
+        </a>
+        <a href="businesses.html" class="footer-nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Inbox</span>
+        </a>
+        <a href="admin.html" class="footer-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Profile</span>
+        </a>
+        <a href="#" class="footer-nav-item" onclick="alert('Settings coming soon')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Settings</span>
+        </a>
+    </nav>
+
     <!-- Business Zone / Directory -->
-    <section class="business-zone section-padding" id="zone">
+    <main class="business-zone" style="padding: 120px 15px 100px 15px;" id="zone">
         <div class="container">
-            <div class="section-header reveal fade-up">
-                <h2 class="section-title">The <span class="purple-text">Business Zone</span></h2>
-                <p class="section-subtitle">Discover, advertise, and recommend top-tier student businesses on campus. Create your profile to join the network.</p>
-            </div>
             
-            <div class="search-container mx-auto reveal fade-up" style="max-width: 600px; margin-bottom: 2rem; position: relative;">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-secondary);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="zone-search" class="search-input w-100" placeholder="Search directory...">
-            </div>
-
-            <div class="directory-filter reveal fade-up delay-1">
-                <button class="filter-btn active">All</button>
-                <button class="filter-btn">Tech Services</button>
-                <button class="filter-btn">Food & Beverages</button>
-                <button class="filter-btn">Beauty & Cosmetics</button>
-                <button class="filter-btn">Design & Marketing</button>
-            </div>
-
             <div class="biz-grid">
-                <!-- Biz Card 1 -->
-                <div class="biz-card reveal fade-up">
-                    <div class="biz-banner tech-banner"></div>
+                <!-- B2B Services -->
+                <div class="biz-card">
+                    <div class="biz-banner" style="background: linear-gradient(135deg, #1e3a8a, #4c1d95); display: flex; align-items: center; justify-content: center;">
+                        <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="white" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
                     <div class="biz-content">
                         <div class="biz-header">
-                            <h3>Nano Tech Solutions</h3>
-                            <span class="ad-badge">Promoted</span>
+                            <h3>Business to-business Services</h3>
                         </div>
-                        <p>Hardware repairs, custom PC builds, and local tech support for students.</p>
-                        <div class="biz-metrics">
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 124 Recommends</div>
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 2.1k Views</div>
-                        </div>
-                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                        <p>A specialized handshake network connecting campus startups for collaborative logistics and service provision.</p>
+                        <button class="gate-btn mt-3" style="padding: 10px;">Connect & Collaborate</button>
                     </div>
                 </div>
 
-                <!-- Biz Card 2 -->
-                <div class="biz-card reveal fade-up delay-1">
-                    <div class="biz-banner food-banner"></div>
+                <!-- Entrepreneur Spotlight -->
+                <div class="biz-card">
+                    <div class="biz-banner">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="Entrepreneur" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
                     <div class="biz-content">
                         <div class="biz-header">
-                            <h3>Midnight Bites</h3>
+                            <h3>Entrepreneur Spotlight</h3>
+                            <span class="ad-badge">Success Story</span>
                         </div>
-                        <p>Late night campus food delivery. Baked goods and hot meals right to your dorm.</p>
-                        <div class="biz-metrics">
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 342 Recommends</div>
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 5.4k Views</div>
-                        </div>
-                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                        <p>Meet the innovators scaling student ventures from dorm rooms to dedicated office spaces.</p>
+                        <button class="gate-btn mt-3" style="padding: 10px; background: rgba(168, 85, 247, 0.2);">Read Story</button>
                     </div>
                 </div>
 
-                <!-- Biz Card 3 -->
-                <div class="biz-card reveal fade-up delay-2">
-                    <div class="biz-banner design-banner"></div>
-                    <div class="biz-content">
-                        <div class="biz-header">
-                            <h3>Aura Studios</h3>
-                        </div>
-                        <p>Branding, graphic design, and marketing material for campus clubs and startups.</p>
-                        <div class="biz-metrics">
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 89 Recommends</div>
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 1.2k Views</div>
-                        </div>
-                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                <!-- Student Summit -->
+                <div class="biz-card">
+                    <div class="biz-banner" style="background: linear-gradient(135deg, #10b981, #064e3b);">
+                        <img src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&w=600&q=80" alt="Summit" style="width:100%; height:100%; object-fit:cover; opacity: 0.6;">
                     </div>
-                </div>
-
-                <!-- Biz Card 4 -->
-                <div class="biz-card reveal fade-up delay-3">
-                    <div class="biz-banner" style="background: linear-gradient(135deg, #fbcfe8, #f472b6);"></div>
                     <div class="biz-content">
                         <div class="biz-header">
-                            <h3>Glamour Cosmetics</h3>
+                            <h3>Student Summit Management</h3>
                         </div>
-                        <p>High quality, affordable beauty products and mobile makeup artistry for events.</p>
-                        <div class="biz-metrics">
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 211 Recommends</div>
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 3.8k Views</div>
-                        </div>
-                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
-                    </div>
-                </div>
-
-                <!-- Biz Card 5 -->
-                <div class="biz-card reveal fade-up delay-1">
-                    <div class="biz-banner" style="background: linear-gradient(135deg, #10b981, #047857);"></div>
-                    <div class="biz-content">
-                        <div class="biz-header">
-                            <h3>Snack Haven</h3>
-                        </div>
-                        <p>Imported sodas, rare candies, and premium study snacks delivered to the library.</p>
-                        <div class="biz-metrics">
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 512 Recommends</div>
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 6.5k Views</div>
-                        </div>
-                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
-                    </div>
-                </div>
-
-                <!-- Biz Card 6 -->
-                <div class="biz-card reveal fade-up delay-2">
-                    <div class="biz-banner" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);"></div>
-                    <div class="biz-content">
-                        <div class="biz-header">
-                            <h3>CodeCrafters Web</h3>
-                        </div>
-                        <p>Freelance student web developers building affordable landing pages and portfolios.</p>
-                        <div class="biz-metrics">
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> 84 Recommends</div>
-                            <div class="metric"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 900 Views</div>
-                        </div>
-                        <button class="btn btn-secondary w-100 mt-3 recommend-btn">Recommend</button>
+                        <p>Professional event management and logistics for the biggest annual student innovation gatherings.</p>
+                        <button class="gate-btn mt-3" style="padding: 10px;">Book Management</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Services Header (Merged) -->
     <section class="services section-padding" style="background: transparent;" id="services">
